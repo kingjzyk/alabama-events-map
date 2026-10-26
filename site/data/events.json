@@ -1,0 +1,181 @@
+[
+ {
+  "title": "Gardendale Elementary School Carnival",
+  "cat": "kids",
+  "town": "Gardendale",
+  "place": "Gardendale Civic Center",
+  "addr": "857 Main St, Gardendale, AL",
+  "start": "2026-10-30",
+  "time": "5\u20139pm",
+  "desc": "School carnival for families.",
+  "lat": 33.646845,
+  "lng": -86.809545,
+  "id": "gardendale-elementary-school-carnival-10-30",
+  "featured": false
+ },
+ {
+  "title": "Trick or Treat at the Trussville Library",
+  "cat": "kids",
+  "town": "Trussville",
+  "place": "Trussville Public Library",
+  "addr": "201 Parkway Dr, Trussville, AL",
+  "start": "2026-10-29",
+  "time": "5\u20137pm",
+  "desc": "Trick-or-treating for kids at the library.",
+  "lat": 33.626887,
+  "lng": -86.604491,
+  "flags": [
+   "Registration required"
+  ],
+  "id": "trick-or-treat-at-the-trussville-library-10-29",
+  "featured": false
+ },
+ {
+  "title": "Hoots & Howls",
+  "cat": "festival",
+  "town": "Birmingham",
+  "place": "Birmingham Zoo",
+  "addr": "2630 Cahaba Rd, Birmingham, AL 35223",
+  "start": "2026-10-23",
+  "end": "2026-10-31",
+  "time": "Weekends through Oct 31, 10am\u20134pm",
+  "cost": "Included with zoo admission \u00b7 Candy Trail wristband extra",
+  "desc": "Halloween weekends at the zoo with a candy trail, train rides and the adventure tower.",
+  "lat": 33.487047,
+  "lng": -86.779405,
+  "flags": [
+   "Hours and pricing are from last year\u2019s event"
+  ],
+  "id": "hoots-and-howls-10-23",
+  "featured": false
+ },
+ {
+  "title": "Friendship Quilters Quilt Show",
+  "cat": "community",
+  "town": "Pell City",
+  "place": "Museum of Pell City",
+  "addr": "1000 Bruce Etheredge Pkwy, Pell City, AL 35128",
+  "start": "2026-10-22",
+  "openEnded": true,
+  "time": "Opened Oct 22",
+  "desc": "Quilt show by the Friendship Quilters.",
+  "lat": 33.578277,
+  "lng": -86.274698,
+  "flags": [
+   "Closing date not posted"
+  ],
+  "id": "friendship-quilters-quilt-show-10-22",
+  "featured": false
+ },
+ {
+  "title": "Aviation Career Day",
+  "cat": "community",
+  "town": "Pell City",
+  "place": "St. Clair County Airport",
+  "addr": "240 Airport Rd, Pell City, AL 35128",
+  "start": "2026-10-31",
+  "time": "Time not posted",
+  "desc": "Career day focused on aviation jobs.",
+  "lat": 33.558884,
+  "lng": -86.248174,
+  "flags": [
+   "Start time not posted"
+  ],
+  "id": "aviation-career-day-10-31",
+  "featured": false
+ },
+ {
+  "title": "Homestead Hollow Christmas in the Country",
+  "cat": "market",
+  "town": "Springville",
+  "place": "Homestead Hollow",
+  "addr": "1161 Murphrees Valley Rd, Springville, AL",
+  "start": "2026-11-13",
+  "end": "2026-11-15",
+  "time": "9am\u20134pm daily",
+  "cost": "$10 adults \u00b7 12 & under free",
+  "desc": "Christmas arts, crafts and country festival.",
+  "lat": 33.787113,
+  "lng": -86.486931,
+  "id": "homestead-hollow-christmas-in-the-country-11-13",
+  "featured": false
+ },
+ {
+  "title": "Barkit Market at Ross Bridge",
+  "cat": "market",
+  "town": "Hoover",
+  "place": "Ross Bridge",
+  "addr": "2101 Grand Ave, Hoover, AL",
+  "start": "2026-10-30",
+  "time": "4\u20138pm",
+  "cost": "Free",
+  "desc": "Evening market of locally made goods, with a pet parade, pet costume contest and treats for kids.",
+  "lat": 33.397559,
+  "lng": -86.883134,
+  "id": "barkit-market-at-ross-bridge-10-30",
+  "featured": false
+ },
+ {
+  "title": "Landmark Baptist Church Fall Festival",
+  "cat": "church",
+  "town": "Leeds",
+  "place": "Landmark Baptist Church",
+  "addr": "8695 Parkway Dr, Leeds, AL 35094",
+  "start": "2026-10-31",
+  "time": "2\u20135pm",
+  "desc": "Candy for the kids, decorated trucks, and games for all ages.",
+  "lat": 33.542508,
+  "lng": -86.52432,
+  "id": "landmark-baptist-church-fall-festival-10-31",
+  "featured": false
+ },
+ {
+  "title": "Tuscany Wine Dinner",
+  "cat": "community",
+  "town": "Springville",
+  "place": "The Farmhouse of Springville",
+  "addr": "85 Purple Heart Blvd, Springville, AL 35146",
+  "start": "2026-11-01",
+  "time": "4:30pm grazing \u00b7 5pm dinner",
+  "cost": "$110 per person",
+  "desc": "Five-course chef's dinner with wine pairings.",
+  "lat": 33.770178,
+  "lng": -86.466854,
+  "flags": [
+   "Reservations required"
+  ],
+  "id": "tuscany-wine-dinner-11-01",
+  "featured": false
+ },
+ {
+  "title": "North Pole Expo 2026",
+  "cat": "market",
+  "town": "Trussville",
+  "place": "Trussville Civic Center",
+  "addr": "5381 Trussville Clay Rd, Trussville, AL",
+  "start": "2026-11-20",
+  "end": "2026-11-22",
+  "time": "Fri 9\u20136 \u00b7 Sat 9\u20134 \u00b7 Sun 1\u20134",
+  "cost": "Free",
+  "desc": "Christmas shopping with 200+ vendor booths, live entertainment and food trucks.",
+  "lat": 33.66026,
+  "lng": -86.593584,
+  "id": "north-pole-expo-2026-11-20",
+  "featured": false
+ },
+ {
+  "title": "St. Clair County Fall Community Yard Sale",
+  "cat": "yard",
+  "town": "Odenville",
+  "place": "St. Clair County Arena (Agriculture & Multi-Event Center)",
+  "addr": "100 Arena Dr, Odenville, AL 35120",
+  "start": "2026-11-07",
+  "time": "9am\u20132pm",
+  "cost": "Free admission",
+  "desc": "Indoor community yard sale. Vendor spots sold out. Rescheduled from its original date.",
+  "lat": 33.654721,
+  "lng": -86.415479,
+  "id": "st-clair-county-fall-community-yard-sale-11-07",
+  "featured": false
+ }
+]

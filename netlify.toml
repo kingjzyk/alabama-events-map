@@ -1,0 +1,3 @@
+# Netlify publishes only the "site" folder. The "archive" folder stays private.
+[build]
+  publish = "site"

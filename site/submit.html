@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Submit an Event · Alabama Events Map</title>
+<meta name="description" content="Add your yard sale, festival, market or church event to the Alabama Events Map. Free.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<style>
+:root{--body:"Bricolage Grotesque",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --bg:#efede8;--panel:#fff;--ink:#1c1e21;--muted:#686c73;--line:#e2dfd8;--accent:#a3263a;--accent-ink:#fff;--ok:#2f8a5b;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1215;--panel:#171b20;--ink:#e8eaed;--muted:#959ca5;--line:#2a3038;--accent:#e8697c;--accent-ink:#1a0a0d;--ok:#5cc28d;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)}
+.back{display:inline-flex;align-items:center;gap:6px;font-weight:600;text-decoration:none;font-size:14px}
+h1{font-size:34px;line-height:1.05;letter-spacing:-.025em;margin:18px 0 8px;font-weight:800;text-wrap:balance}
+.lede{color:var(--muted);margin:0 0 22px;max-width:56ch}
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:18px}
+.types label{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:11px 13px;cursor:pointer;font-weight:650;font-size:14px}
+.types label small{font-weight:400;color:var(--muted);font-size:12px}
+.types input{position:absolute;opacity:0;pointer-events:none}
+.types label:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.types label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+form.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.f label .opt{text-transform:none;letter-spacing:0;font-weight:500}
+input[type=text],input[type=email],input[type=url],input[type=date],select,textarea{width:100%;font:inherit;color:var(--ink);background:color-mix(in srgb,var(--ink) 3%,var(--panel));border:1px solid var(--line);border-radius:10px;padding:10px 12px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:96px;resize:vertical}
+.hint{font-size:12.5px;color:var(--muted)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.check input{margin-top:4px;accent-color:var(--accent)}
+.sec{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-top:6px}
+button.submit{height:46px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:750;font-size:15px;cursor:pointer}
+button.submit:hover{filter:brightness(1.06)}
+.hidden-field{position:absolute;left:-9999px}
+.note{font-size:12.5px;color:var(--muted);margin-top:18px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="./">← Back to the map</a>
+  <h1 id="h">Submit an event</h1>
+  <p class="lede" id="lede">Yard sales, festivals, markets, church and community events anywhere in Alabama. Listings are free. We check every one before it goes on the map, usually within a day.</p>
+
+  <form class="card" name="event-submission" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="company_website" id="form">
+    <input type="hidden" name="form-name" value="event-submission">
+    <p class="hidden-field"><label>Leave this empty <input name="company_website"></label></p>
+
+    <div class="types" role="radiogroup" aria-label="What is this about?">
+      <label><input type="radio" name="request_type" value="New event" id="t-new" checked>New event<small>Add a listing</small></label>
+      <label><input type="radio" name="request_type" value="Correction" id="t-correction">Fix a listing<small>Wrong time, place or detail</small></label>
+      <label><input type="radio" name="request_type" value="Removal" id="t-removal">Remove a listing<small>Take an event down</small></label>
+      <label><input type="radio" name="request_type" value="Featured / advertising" id="t-featured">Get featured<small>Pin your event or sponsor the map</small></label>
+    </div>
+
+    <div class="f"><label for="title">Event name</label><input type="text" id="title" name="event_name" required placeholder="e.g. Multi-family yard sale"></div>
+
+    <div data-for="new" class="f"><label for="cat">Type</label>
+      <select id="cat" name="category">
+        <option>Yard / garage / estate sale</option><option>Festival</option><option>Market / vendor event</option>
+        <option>Trunk-or-treat / kids event</option><option>Church event</option><option>Community / food / other</option>
+      </select></div>
+
+    <div data-for="new">
+      <div class="row">
+        <div class="f"><label for="d1">Start date</label><input type="date" id="d1" name="start_date"></div>
+        <div class="f"><label for="d2">End date <span class="opt">(if more than one day)</span></label><input type="date" id="d2" name="end_date"></div>
+      </div>
+    </div>
+    <div data-for="new" class="row">
+      <div class="f"><label for="t1">Hours</label><input type="text" id="t1" name="hours" placeholder="e.g. Sat 7am–2pm, Sun 8am–noon"></div>
+      <div class="f"><label for="cost">Cost <span class="opt">(optional)</span></label><input type="text" id="cost" name="cost" placeholder="Free, $5, $10 adults…"></div>
+    </div>
+    <div data-for="new" class="row">
+      <div class="f"><label for="place">Place name <span class="opt">(optional)</span></label><input type="text" id="place" name="place" placeholder="e.g. First Baptist Church"></div>
+      <div class="f"><label for="town">Town</label><input type="text" id="town" name="town" placeholder="e.g. Springville"></div>
+    </div>
+    <div data-for="new" class="f"><label for="addr">Street address</label><input type="text" id="addr" name="address" placeholder="e.g. 981 Oak Grove Rd">
+      <span class="hint">For sales at a home, the full address will be shown on the map until the sale ends, then removed.</span></div>
+    <div class="f"><label for="desc" id="descLabel">Description</label><textarea id="desc" name="description" placeholder="What will people find there? Food, vendors, what you’re selling, anything to know."></textarea></div>
+    <div class="f"><label for="link">Facebook post or website <span class="opt">(optional)</span></label><input type="url" id="link" name="link" placeholder="https://"></div>
+
+    <div class="sec">Your contact info</div>
+    <div class="row">
+      <div class="f"><label for="name">Your name</label><input type="text" id="name" name="contact_name" required></div>
+      <div class="f"><label for="email">Email</label><input type="email" id="email" name="contact_email" required></div>
+    </div>
+    <span class="hint" style="margin-top:-8px">Only used if we have a question. Your name, email and phone are never shown on the map.</span>
+
+    <label class="check" data-for="new"><input type="checkbox" name="permission" value="yes" id="perm" required>I’m the organizer or have permission to list this event, and the details can be shown publicly.</label>
+
+    <button class="submit" type="submit" id="btn">Send for review</button>
+  </form>
+  <p class="note">Featured listings and sponsor spots are paid. Pick “Get featured” and we’ll reply with options and pricing.</p>
+</main>
+<script>
+(function(){
+  const form=document.getElementById("form");
+  const copy={
+    "New event":["Submit an event","Yard sales, festivals, markets, church and community events anywhere in Alabama. Listings are free. We check every one before it goes on the map, usually within a day.","Description","Send for review"],
+    "Correction":["Fix a listing","Tell us which event is wrong and what it should say. We’ll update the map.","What needs fixing?","Send correction"],
+    "Removal":["Remove a listing","Name the event and we’ll take it down, usually within a day. No reason needed.","Anything else we should know? (optional)","Request removal"],
+    "Featured / advertising":["Get featured","Put your event at the top of the list with a Featured badge, or sponsor the map for a season. Tell us what you have in mind and we’ll reply with options.","What would you like to promote?","Ask about featuring"]
+  };
+  function sync(){
+    const t=form.querySelector('input[name="request_type"]:checked').value,isNew=t==="New event";
+    form.querySelectorAll('[data-for="new"]').forEach(el=>{el.hidden=!isNew;el.querySelectorAll("input,select,textarea").forEach(i=>i.disabled=!isNew)});
+    const c=copy[t];document.getElementById("h").textContent=c[0];document.getElementById("lede").textContent=c[1];
+    document.getElementById("descLabel").textContent=c[2];document.getElementById("btn").textContent=c[3];
+    document.getElementById("title").placeholder=isNew?"e.g. Multi-family yard sale":"Which event? e.g. Palmerfest 2026";
+  }
+  const pre=new URLSearchParams(location.search).get("type");
+  const map={correction:"t-correction",removal:"t-removal",featured:"t-featured"};
+  if(map[pre])document.getElementById(map[pre]).checked=true;
+  form.addEventListener("change",e=>{if(e.target.name==="request_type")sync()});
+  sync();
+})();
+</script>
+</body>
+</html>
