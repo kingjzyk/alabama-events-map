@@ -28,6 +28,10 @@
       <button type="button" class="tbtn" id="nearBtn" title="Show events near me"><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm9 3h-2.1A7 7 0 0 0 13 5.1V3h-2v2.1A7 7 0 0 0 5.1 11H3v2h2.1a7 7 0 0 0 5.9 5.9V21h2v-2.1a7 7 0 0 0 5.9-5.9H21zm-9 6a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg><span class="hide-sm">Near me</span></button>
       <button type="button" class="tbtn" id="stateBtn" title="Show all of Alabama"><svg viewBox="0 0 24 24"><path d="M9 3l6 2 6-2v16l-6 2-6-2-6 2V5zm1 2.3v12.5l4 1.3V6.6z"/></svg><span class="hide-sm">All Alabama</span></button>
       <div style="position:relative">
+        <button type="button" class="tbtn" id="layerBtn" aria-haspopup="true" aria-expanded="false" title="Map type"><svg viewBox="0 0 24 24" id="layerIcon"></svg><span class="hide-sm" id="layerName">Map</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6z"/></svg></button>
+        <div class="menu" id="layerMenu" role="menu" hidden></div>
+      </div>
+      <div style="position:relative">
         <button type="button" class="tbtn" id="themeBtn" aria-haspopup="true" aria-expanded="false"><span class="sw" id="themeSw"></span><span id="themeName">Theme</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6z"/></svg></button>
         <div class="menu" id="themeMenu" role="menu" hidden></div>
       </div>

@@ -109,6 +109,32 @@ map.addControl(new maplibregl.AttributionControl({compact:true}),"bottom-right")
 map.on("error",ev=>{ // CARTO unreachable before the first style loads: fall back to OpenStreetMap
   if(!styleReady&&!usingOSM){usingOSM=true;map.setStyle(OSM_STYLE)}});
 
+// ---------- map views: Map / Satellite / Hybrid (+ optional TomTom traffic) ----------
+const SAT_SRC={type:"raster",tiles:["https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"],tileSize:256,maxzoom:16,
+  attribution:'Imagery: <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS The National Map</a> (USDA NAIP)'};
+const TT_KEY=T.tomtomKey||"";
+const TRAFFIC_SRC=TT_KEY?{type:"raster",tiles:["https://api.tomtom.com/traffic/map/4/tile/flow/relative0/{z}/{x}/{y}.png?tileSize=256&key="+encodeURIComponent(TT_KEY)],tileSize:256,
+  attribution:'Traffic &copy; <a href="https://www.tomtom.com" target="_blank" rel="noopener">TomTom</a>'}:null;
+let mapView=store.get("al-view")||"map";if(!["map","satellite","hybrid"].includes(mapView))mapView="map";
+let trafficOn=!!TRAFFIC_SRC&&store.get("al-traffic")==="1";
+const firstLabelLayer=()=>{const L=(map.getStyle().layers||[]);const l=L.find(x=>x.type==="symbol"&&!["mask","al-glow","al-edge","events-src"].includes(x.id));return l?l.id:"mask"};
+function applyLayers(){
+  if(!map.getLayer("mask"))return;
+  if(map.getLayer("sat"))map.removeLayer("sat");
+  if(map.getLayer("traffic"))map.removeLayer("traffic");
+  if(mapView!=="map"){
+    if(!map.getSource("sat"))map.addSource("sat",SAT_SRC);
+    map.addLayer({id:"sat",type:"raster",source:"sat",paint:{"raster-fade-duration":150}},mapView==="hybrid"?firstLabelLayer():"mask");
+  }
+  if(trafficOn&&TRAFFIC_SRC){
+    if(!map.getSource("traffic"))map.addSource("traffic",TRAFFIC_SRC);
+    map.addLayer({id:"traffic",type:"raster",source:"traffic",paint:{"raster-opacity":.9}},firstLabelLayer());
+  }
+  applyTint();
+}
+function setView(v){mapView=v;store.set("al-view",v);applyLayers();buildLayerMenu()}
+function setTraffic(on){trafficOn=on;store.set("al-traffic",on?"1":"0");applyLayers();buildLayerMenu()}
+
 function overlayColors(){
   if(!map.getLayer("mask"))return;
   map.setPaintProperty("mask","fill-color",css("--bg"));
@@ -125,12 +151,12 @@ function addOverlays(){
     map.addSource("events",{type:"geojson",data:fc(current),cluster:true,clusterRadius:46,clusterMaxZoom:13,clusterProperties:cp});
     map.addLayer({id:"events-src",type:"circle",source:"events",paint:{"circle-radius":1,"circle-opacity":0,"circle-stroke-opacity":0}});
   }
-  overlayColors();
+  overlayColors();applyLayers();
 }
 map.on("style.load",()=>{styleReady=true;addOverlays();clearClusters();applyTint()});
 function applyTint(){
-  const a=activeTheme(),dark=isDark(a);let f=TINT[a]||"";
-  if(usingOSM&&dark)f="invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.55) "+f;
+  const a=activeTheme(),dark=isDark(a);let f=mapView==="map"?(TINT[a]||""):"";
+  if(usingOSM&&dark&&mapView==="map")f="invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.55) "+f;
   map.getCanvas().style.filter=f.trim()||"none";
 }
 function styleMap(){
@@ -157,6 +183,8 @@ function popup(e){
   <div class="bd"><dl><dt>When</dt><dd>${esc(whenText(e))}</dd><dt>Where</dt><dd>${where}</dd><dt>Cost</dt><dd>${esc(e.cost||"Not posted")}</dd></dl>
   <p>${esc(e.desc)}</p>${flags?`<div class="flags">${flags}</div>`:""}
   <div class="acts"><a href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">Directions</a>
+  <a class="sec" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${e.lat}%2C${e.lng}" target="_blank" rel="noopener">Street View</a>
+  <a class="sec" href="https://www.google.com/maps/@?api=1&map_action=map&center=${e.lat}%2C${e.lng}&zoom=14&layer=traffic" target="_blank" rel="noopener">Live traffic</a>
   <button type="button" data-act="save" data-id="${e.id}" class="${sv?"on":""}">${sv?"Saved":"Save"}</button>
   <button type="button" data-act="cal" data-id="${e.id}">Add to calendar</button>
   <button type="button" data-act="share" data-id="${e.id}">Share</button></div></div></div>`;
@@ -344,6 +372,18 @@ $("q").addEventListener("input",ev=>{query=ev.target.value;render()});
 $("list").addEventListener("click",ev=>{const b=ev.target.closest(".card");if(!b)return;const e=upcoming.find(x=>x.id===b.dataset.id);if(e)openEvent(e)});
 function boundsOf(pts){const b=new maplibregl.LngLatBounds();pts.forEach(p=>b.extend(p));return b}
 function fitEvents(){const v=visible();if(!v.length)return;map.fitBounds(boundsOf(v.map(e=>[e.lng,e.lat])),{padding:pad(14),maxZoom:12,duration:900})}
+const LAYER_ICONS={map:'<path d="M9 3l6 2 6-2v16l-6 2-6-2-6 2V5zm1 2.3v12.5l4 1.3V6.6z"/>',satellite:'<path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm0 2a8 8 0 0 0-6.9 12l3.4-3.4 2 2 4.5-4.6 2.9 2.9A8 8 0 0 0 12 4z"/>',hybrid:'<path d="M12 2l10 5-10 5L2 7zm-7.8 8.9L12 15l7.8-4.1L22 12l-10 5-10-5zm0 5L12 20l7.8-4.1L22 17l-10 5-10-5z"/>'};
+function buildLayerMenu(){
+  const item=(v,name,small)=>`<button type="button" role="menuitemradio" id="view-${v}" data-v="${v}" aria-checked="${mapView===v}"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;flex:none">${LAYER_ICONS[v]}</svg><span class="lab">${name}<small>${small}</small></span>${CHECK}</button>`;
+  $("layerMenu").innerHTML=item("map","Map","Streets and places")+item("satellite","Satellite","Aerial photos")+item("hybrid","Hybrid","Aerial photos with labels")
+    +(TRAFFIC_SRC?`<hr><button type="button" role="menuitemcheckbox" id="view-traffic" data-t="traffic" aria-checked="${trafficOn}"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;flex:none"><path d="M9 2h6a2 2 0 0 1 2 2v1h3c0 2-1.3 3.3-3 3.8V10h3c0 2-1.3 3.3-3 3.8V15h3c0 2-1.3 3.3-3 3.8V20a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-1.2C5.3 18.3 4 17 4 15h3v-1.2C5.3 13.3 4 12 4 10h3V8.8C5.3 8.3 4 7 4 5h3V4a2 2 0 0 1 2-2zm3 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg><span class="lab">Traffic<small>Live road conditions</small></span>${CHECK}</button>`:"");
+  $("layerName").textContent=mapView==="map"?"Map":mapView==="satellite"?"Satellite":"Hybrid";
+  $("layerIcon").innerHTML=LAYER_ICONS[mapView];
+}
+$("layerBtn").addEventListener("click",e=>{e.stopPropagation();const m=$("layerMenu");m.hidden=!m.hidden;$("layerBtn").setAttribute("aria-expanded",!m.hidden);$("themeMenu").hidden=true});
+$("layerMenu").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.t==="traffic")setTraffic(!trafficOn);else setView(b.dataset.v);$("layerMenu").hidden=true;$("layerBtn").setAttribute("aria-expanded","false")});
+document.addEventListener("click",ev=>{if(!ev.target.closest("#layerMenu")&&!ev.target.closest("#layerBtn")){$("layerMenu").hidden=true;$("layerBtn").setAttribute("aria-expanded","false")}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("layerMenu").hidden=true;$("layerBtn").setAttribute("aria-expanded","false")}});
 $("stateBtn").addEventListener("click",()=>map.fitBounds(AL_BBOX,{padding:pad(0),duration:900}));
 let meMarker=null;
 $("nearBtn").addEventListener("click",()=>{
@@ -387,7 +427,7 @@ const fx=(()=>{
 })();
 
 // ---------- start ----------
-setSheet("peek");buildMenu();buildCats();buildSponsor();render();
+setSheet("peek");buildLayerMenu();buildMenu();buildCats();buildSponsor();render();
 applyTheme();
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",styleMap);
 new MutationObserver(styleMap).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
