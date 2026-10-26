@@ -31,7 +31,11 @@ Netlify publishes the `site/` folder automatically on every push to `main`. `arc
 5. Skip duplicates (same event, same date, even if worded differently) and anything already ended.
 6. Privacy: never include a person's name, phone number, email or photo. For sales at a private home, list the street address only when the seller posted it publicly.
 7. Write descriptions in plain words: what it is and what people will find there. No hype.
-8. Run `cd site && python3 build.py`, check it prints no errors, then commit with a message like `Scan Oct 28: +6 events, -4 ended` and push to `main`. Netlify then publishes on its own.
+8. Run `cd site && python3 build.py`, check it prints no errors, then commit with a message like `Scan Oct 28: +6 events, -4 ended`. Netlify credits are limited (300 a month, 15 per publish), so the site publishes once a week:
+   - **Wednesday scan:** add `[skip netlify]` to the end of the commit message's first line, then push. The changes are saved on GitHub but not published yet.
+   - **Thursday scan:** commit normally and push. That one publish puts Wednesday's and Thursday's changes live together.
+   - Changes made outside the scans (e.g. "look" sessions) also use `[skip netlify]` unless the owner asks to publish right away; the next Thursday scan publishes them.
+   - Never push more than one publish per day. Changes outside `site/` never publish (netlify.toml skips them).
 9. Finish with a short summary for the owner: events added (title, town, date), times filled in for earlier events, events removed, and any events left out for missing details, with what was missing.
 
 ## Hard rules
