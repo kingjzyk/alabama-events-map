@@ -74,15 +74,13 @@
   "place": "St. Clair County Airport",
   "addr": "240 Airport Rd, Pell City, AL 35128",
   "start": "2026-10-31",
-  "time": "Time not posted",
+  "time": "Time not posted yet",
   "desc": "Career day focused on aviation jobs.",
   "lat": 33.558884,
   "lng": -86.248174,
-  "flags": [
-   "Start time not posted"
-  ],
   "id": "aviation-career-day-10-31",
-  "featured": false
+  "featured": false,
+  "timeTBD": true
  },
  {
   "title": "Homestead Hollow Christmas in the Country",
@@ -1051,5 +1049,71 @@
   "lng": -88.185807,
   "featured": false,
   "cost": "Free"
+ },
+ {
+  "id": "christmas-village-festival-11-04",
+  "title": "Christmas Village Festival",
+  "cat": "market",
+  "town": "Birmingham",
+  "place": "Birmingham Jefferson Convention Complex (BJCC)",
+  "addr": "2100 Richard Arrington Jr Blvd N, Birmingham, AL 35203",
+  "start": "2026-11-04",
+  "time": "Time not posted yet",
+  "timeTBD": true,
+  "desc": "Birmingham's big juried holiday show with craft, fine art and gift exhibitors.",
+  "lat": 33.52556,
+  "lng": -86.811509,
+  "featured": false,
+  "cost": "$5\u2013$25",
+  "end": "2026-11-08"
+ },
+ {
+  "id": "a-southern-christmas-bazaar-11-14",
+  "title": "A Southern Christmas Bazaar",
+  "cat": "market",
+  "town": "Pelham",
+  "place": "Pelham Civic Complex and Ice Arena",
+  "addr": "500 Amphitheater Rd, Pelham, AL 35124",
+  "start": "2026-11-14",
+  "time": "Time not posted yet",
+  "timeTBD": true,
+  "desc": "Holiday shopping with antique, craft, fine art and homegrown vendors, plus photos with Santa and ice skating on site.",
+  "lat": 33.329234,
+  "lng": -86.788897,
+  "featured": false,
+  "cost": "$3\u2013$8"
+ },
+ {
+  "id": "magic-city-classic-10-31",
+  "title": "Magic City Classic",
+  "cat": "festival",
+  "town": "Birmingham",
+  "place": "Legion Field",
+  "addr": "400 Graymont Ave W, Birmingham, AL 35204",
+  "start": "2026-10-31",
+  "time": "Time not posted yet",
+  "timeTBD": true,
+  "desc": "The annual Alabama A&M vs. Alabama State football classic at Legion Field, one of the biggest HBCU games in the country.",
+  "lat": 33.511347,
+  "lng": -86.84268,
+  "featured": false,
+  "flags": [
+   "Game time to be announced"
+  ]
+ },
+ {
+  "id": "opelika-villains-ball-10-31",
+  "title": "Opelika Villain's Ball",
+  "cat": "community",
+  "town": "Opelika",
+  "place": "John Emerald Distilling Company",
+  "addr": "706 N Railroad Ave, Opelika, AL 36801",
+  "start": "2026-10-31",
+  "time": "Time not posted yet",
+  "timeTBD": true,
+  "desc": "Villain-themed Halloween party at John Emerald Distilling.",
+  "lat": 32.649224,
+  "lng": -85.379025,
+  "featured": false
  }
 ]

@@ -25,13 +25,14 @@ Netlify publishes the `site/` folder automatically on every push to `main`. `arc
 ## Twice-weekly scan (Wednesday and Thursday)
 1. `git pull`, then read `site/data/events.json` so you know what is already listed.
 2. Search the public web for Alabama events in roughly the next 3 weeks: festivals, fall/holiday markets, craft and vendor fairs, trunk-or-treats, church and school events, community events, parades, estate sales and community/neighborhood yard sales. Good sources: city and county websites and calendars, Chambers of Commerce, church and school sites, library calendars, local news "things to do" lists (AL.com, Bham Now, Trussville Tribune, St. Clair News-Aegis, Cahaba Sun, Vestavia Voice, etc.), Eventbrite, estatesales.net, yardsalesearch.com. Facebook needs a login, so skip it. Cover the whole state of Alabama evenly: work through the major regions each scan (Birmingham metro, Huntsville/North Alabama, Montgomery/River Region, Mobile/Baldwin and the Gulf Coast, Tuscaloosa/West Alabama, East Alabama/Auburn-Opelika, the Wiregrass/Dothan, and smaller towns in between).
-3. Publish an event only if it has ALL of: name, date(s), start time, town, a street address that a places lookup confirms, and enough information to write a one-line description. Cost is the only detail allowed to be missing. If any other piece is missing, do not add the event; list it in the summary instead.
+3. Publish an event only if it has ALL of: name, date(s), town, a street address that a places lookup confirms, and enough information to write a one-line description. Cost and start time may be missing. If the start time isn't posted yet, set `"time": "Time not posted yet"` and `"timeTBD": true`. If any other piece is missing, do not add the event; list it in the summary instead.
+3a. Before searching for new events, re-check every event with `"timeTBD": true`: look for its start time on the organizer's site or a current news listing. When you find it, set `time` and remove `timeTBD`. Report which times were filled in.
 4. Use the event's own page or the organizer's site as the source whenever possible. Never guess or fill in a detail. If two sources disagree, use the organizer's and add a flag noting the difference.
 5. Skip duplicates (same event, same date, even if worded differently) and anything already ended.
 6. Privacy: never include a person's name, phone number, email or photo. For sales at a private home, list the street address only when the seller posted it publicly.
 7. Write descriptions in plain words: what it is and what people will find there. No hype.
 8. Run `cd site && python3 build.py`, check it prints no errors, then commit with a message like `Scan Oct 28: +6 events, -4 ended` and push to `main`. Netlify then publishes on its own.
-9. Finish with a short summary for the owner: events added (title, town, date), events removed, and any events left out for missing details, with what was missing.
+9. Finish with a short summary for the owner: events added (title, town, date), times filled in for earlier events, events removed, and any events left out for missing details, with what was missing.
 
 ## Hard rules
 - Never publish an event with a made-up or guessed date, time or address.
