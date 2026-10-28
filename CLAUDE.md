@@ -1,7 +1,7 @@
 # Alabama Events Map
 
-Weekly interactive map of community events across Alabama, live at https://alabama-events-map.netlify.app.
-Netlify publishes the `site/` folder automatically on every push to `main`. `archive/` is private and never published.
+Weekly interactive map of community events across Alabama. The address is `siteUrl` in `site/site.json`.
+Cloudflare Pages publishes the `site/` folder automatically on every push to `main` that changes something in `site/`. `archive/` is private and never published. The old Netlify address only redirects to the new one (`netlify-redirect/`); don't change it.
 
 ## Layout
 - `site/data/events.json`: every listed event. This is the file the scans edit.
@@ -31,11 +31,7 @@ Netlify publishes the `site/` folder automatically on every push to `main`. `arc
 5. Skip duplicates (same event, same date, even if worded differently) and anything already ended.
 6. Privacy: never include a person's name, phone number, email or photo. For sales at a private home, list the street address only when the seller posted it publicly.
 7. Write descriptions in plain words: what it is and what people will find there. No hype.
-8. Run `cd site && python3 build.py`, check it prints no errors, then commit with a message like `Scan Oct 28: +6 events, -4 ended`. Netlify credits are limited (300 a month, 15 per publish), so the site publishes once a week:
-   - **Wednesday scan:** add `[skip netlify]` to the end of the commit message's first line, then push. The changes are saved on GitHub but not published yet.
-   - **Thursday scan:** commit normally and push. That one publish puts Wednesday's and Thursday's changes live together.
-   - Changes made outside the scans (e.g. "look" sessions) also use `[skip netlify]` unless the owner asks to publish right away; the next Thursday scan publishes them.
-   - Never push more than one publish per day. Changes outside `site/` never publish (netlify.toml skips them).
+8. Run `cd site && python3 build.py`, check it prints no errors, then commit with a message like `Scan Oct 28: +6 events, -4 ended` and push. Cloudflare publishes it within a minute or two. Both scans publish; publishing has no credit limit (500 publishes a month on the free plan), so out-of-scan changes can publish right away too.
 9. Finish with a short summary for the owner: events added (title, town, date), times filled in for earlier events, events removed, and any events left out for missing details, with what was missing.
 
 ## Hard rules

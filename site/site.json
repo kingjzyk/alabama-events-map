@@ -6,5 +6,9 @@
     "cartoKey": "cb1_4tqz_1_caf00c2109125cc7c28e71f8",
     "_help": "Free CARTO basemap key for the Google/Apple-style map. Leave empty to use OpenStreetMap."
   },
-  "sponsor": null
+  "sponsor": null,
+  "form": {
+    "web3formsKey": "",
+    "_help": "Web3Forms access key (free, from web3forms.com). When set, the Submit form emails entries through Web3Forms instead of Netlify Forms."
+  }
 }

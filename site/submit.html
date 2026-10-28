@@ -124,6 +124,27 @@ button.submit:hover{filter:brightness(1.06)}
   if(map[pre])document.getElementById(map[pre]).checked=true;
   form.addEventListener("change",e=>{if(e.target.name==="request_type")sync()});
   sync();
+  // Off Netlify, send the form to Web3Forms (emails each submission). Key lives in site.json → form.web3formsKey.
+  let key=null;
+  fetch("site.json",{cache:"no-cache"}).then(r=>r.json()).then(s=>{key=(s.form&&s.form.web3formsKey)||null}).catch(()=>{});
+  form.addEventListener("submit",async e=>{
+    if(!key)return; // Netlify Forms handles it
+    e.preventDefault();
+    if(form.company_website.value){location.href="thanks.html";return} // bot filled the hidden field
+    const btn=document.getElementById("btn"),label=btn.textContent;btn.disabled=true;btn.textContent="Sending…";
+    const fd=new FormData(form);fd.delete("form-name");fd.delete("company_website");
+    fd.append("access_key",key);fd.append("subject","Alabama Events Map: "+fd.get("request_type")+" – "+(fd.get("event_name")||""));
+    fd.append("from_name","Alabama Events Map");
+    try{
+      const r=await fetch("https://api.web3forms.com/submit",{method:"POST",body:fd,headers:{Accept:"application/json"}});
+      const j=await r.json().catch(()=>({}));
+      if(r.ok&&j.success!==false){location.href="thanks.html";return}
+      throw new Error(j.message||r.status);
+    }catch(err){
+      btn.disabled=false;btn.textContent=label;
+      alert("Sorry, that didn’t go through. Please try again in a minute.");
+    }
+  });
 })();
 </script>
 </body>
