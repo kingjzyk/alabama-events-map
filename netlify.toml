@@ -1,3 +1,5 @@
 # The site moved to https://sidemissionmap.com (Cloudflare). Netlify now only redirects old links there.
 [build]
   publish = "netlify-redirect"
+  # Never build again: the redirect is already published, and skipped builds cost no credits.
+  ignore = "exit 0"
