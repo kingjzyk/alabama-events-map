@@ -7,6 +7,7 @@ The site is **Side Mission** at https://sidemissionmap.com, hosted on Cloudflare
 - `site/data/events.json`: every listed event. This is the file the scans edit.
 - `site/build.py`: run `cd site && python3 build.py` after any change to events. It removes ended events (yard sales are deleted, others move to `archive/past-events.json`), rebuilds the share pages in `site/e/`, `og.png` and `sitemap.xml`. Needs Pillow.
 - `site/site.json`: site name, web address, CARTO map key, sponsor.
+- `site/index.html`: landing page (reads `data/events.json` for its numbers, weekend picks and mini map). `site/map.html`: the map page.
 - `site/assets/app.js`: map code (MapLibre). Don't change it during a scan.
 
 ## Event format
