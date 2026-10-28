@@ -4,9 +4,9 @@
 :root{
   --body:"Bricolage Grotesque",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:"Fraunces",Georgia,serif; --d-wt:800; --d-size:32px; --d-track:-.03em; --brand-ink:#1d3557; --brand-trail:#e76f51;
-  --bg:#efede8; --panel:#ffffff; --ink:#1c1e21; --muted:#686c73; --line:#e6e3dd; --accent:#a3263a; --accent-ink:#ffffff;
-  --m-water:#bcd3dd; --m-out:#e7e3db; --m-land:#faf8f4; --m-county:#ddd6c8; --m-hot:#a3263a; --m-urban:#efe7d8;
-  --m-int:#d9822b; --m-case:#ffffff; --m-us:#cdbfa5; --m-river:#93b7c8; --m-label:#5d6168; --m-halo:#faf8f4; --m-state:#8a8272;
+  --bg:#e8e6e1; --panel:#f8f7f4; --ink:#1c1e21; --muted:#686c73; --line:#e0ddd6; --accent:#1d3557; --accent-ink:#ffffff;
+  --m-water:#c4d3d8; --m-out:#e1ded7; --m-land:#f2f0eb; --m-county:#d9d3c7; --m-hot:#1d3557; --m-urban:#e9e3d8;
+  --m-int:#d9822b; --m-case:#ffffff; --m-us:#cdbfa5; --m-river:#93b7c8; --m-label:#5d6168; --m-halo:#f2f0eb; --m-state:#8a8272;
   --c-festival:#c4452c; --c-market:#6d4bb3; --c-kids:#c57d0f; --c-yard:#2f8a5b; --c-church:#2f5d86; --c-community:#b23a6e; --pin-ink:#ffffff;
   --shadow:0 1px 2px rgba(20,20,30,.06),0 12px 32px rgba(20,20,30,.12);
 }
@@ -32,9 +32,9 @@
   --shadow:0 14px 40px rgba(0,0,0,.55); color-scheme:dark}
 :root[data-season="harvest"]{
   --display:"Fraunces",Georgia,serif; --d-wt:700; --d-size:32px; --d-track:-.02em;
-  --bg:#efe4d2; --panel:#fbf5ea; --ink:#33210f; --muted:#7a634a; --line:#e7d7bd; --accent:#b4441c; --accent-ink:#fff7ec;
-  --m-water:#a9c1bc; --m-out:#e3d3b8; --m-land:#f6ecd9; --m-county:#dfcaa6; --m-hot:#b4441c; --m-urban:#ecdcc0;
-  --m-int:#b4441c; --m-case:#f6ecd9; --m-us:#cfb48c; --m-river:#8fb0aa; --m-label:#7a634a; --m-halo:#f6ecd9; --m-state:#9a7b55;
+  --bg:#ebe4d9; --panel:#f9f5ee; --ink:#33210f; --muted:#7a634a; --line:#e2d8c8; --accent:#a24a28; --accent-ink:#fff7ec;
+  --m-water:#b5c3bf; --m-out:#e1d7c6; --m-land:#f3eee4; --m-county:#dbcfba; --m-hot:#a24a28; --m-urban:#e9e0cf;
+  --m-int:#a8552f; --m-case:#f6ecd9; --m-us:#cfb48c; --m-river:#8fb0aa; --m-label:#7a634a; --m-halo:#f3eee4; --m-state:#9a7b55;
   --c-festival:#c0501f; --c-market:#7a5c2e; --c-kids:#c98a12; --c-yard:#5d7a2e; --c-church:#8a3b3b; --c-community:#2f6f73; --pin-ink:#fff7ec;
   --shadow:0 12px 32px rgba(70,40,10,.16); color-scheme:light}
 :root[data-season="christmas"]{
@@ -46,23 +46,23 @@
   --shadow:0 14px 40px rgba(0,0,0,.5); color-scheme:dark}
 :root[data-season="winter"]{
   --display:"Josefin Sans",ui-sans-serif,sans-serif; --d-wt:700; --d-size:28px; --d-track:.03em;
-  --bg:#e5ecf2; --panel:#fbfdfe; --ink:#18293a; --muted:#5c7186; --line:#d5e0ea; --accent:#2c6cb0; --accent-ink:#ffffff;
-  --m-water:#b8d0e4; --m-out:#dce5ee; --m-land:#f5f9fc; --m-county:#d0dce7; --m-hot:#2c6cb0; --m-urban:#e4ecf3;
-  --m-int:#2c6cb0; --m-case:#f5f9fc; --m-us:#bccbd9; --m-river:#98bcd8; --m-label:#5c7186; --m-halo:#f5f9fc; --m-state:#8fa5ba;
+  --bg:#e5eaee; --panel:#f9fbfc; --ink:#18293a; --muted:#5c7186; --line:#d5e0ea; --accent:#3a6796; --accent-ink:#ffffff;
+  --m-water:#c2d2de; --m-out:#dce5ee; --m-land:#f2f5f8; --m-county:#d0dce7; --m-hot:#3a6796; --m-urban:#e4ecf3;
+  --m-int:#3a6796; --m-case:#f5f9fc; --m-us:#bccbd9; --m-river:#98bcd8; --m-label:#5c7186; --m-halo:#f2f5f8; --m-state:#8fa5ba;
   --c-festival:#2c6cb0; --c-market:#7b5ea8; --c-kids:#c94f86; --c-yard:#2f7f66; --c-church:#3e4f63; --c-community:#b86a1f; --pin-ink:#ffffff;
   --shadow:0 12px 32px rgba(20,40,70,.14); color-scheme:light}
 :root[data-season="spring"]{
   --display:"Fraunces",Georgia,serif; --d-wt:700; --d-size:32px; --d-track:-.02em;
-  --bg:#eaf1e3; --panel:#fbfdf7; --ink:#20301c; --muted:#5f7058; --line:#dce6d1; --accent:#c2406f; --accent-ink:#ffffff;
-  --m-water:#b3d5df; --m-out:#e0e9d4; --m-land:#f7fbf1; --m-county:#d3dfc4; --m-hot:#c2406f; --m-urban:#e8efdc;
-  --m-int:#c2406f; --m-case:#f7fbf1; --m-us:#c9d5b8; --m-river:#93c1cf; --m-label:#5f7058; --m-halo:#f7fbf1; --m-state:#8ea07f;
+  --bg:#e6ebe1; --panel:#f9fbf6; --ink:#20301c; --muted:#5f7058; --line:#dce6d1; --accent:#ad4a6e; --accent-ink:#ffffff;
+  --m-water:#bdd3d9; --m-out:#e0e9d4; --m-land:#f3f6ee; --m-county:#d3dfc4; --m-hot:#ad4a6e; --m-urban:#e8efdc;
+  --m-int:#ad4a6e; --m-case:#f7fbf1; --m-us:#c9d5b8; --m-river:#93c1cf; --m-label:#5f7058; --m-halo:#f3f6ee; --m-state:#8ea07f;
   --c-festival:#c2406f; --c-market:#6a59b0; --c-kids:#c97a14; --c-yard:#3f8a4b; --c-church:#44606e; --c-community:#2a7f8c; --pin-ink:#ffffff;
   --shadow:0 12px 32px rgba(30,50,20,.14); color-scheme:light}
 :root[data-season="summer"]{
   --display:"Shrikhand",Georgia,serif; --d-wt:400; --d-size:30px; --d-track:0;
-  --bg:#fbeed6; --panel:#fffaf0; --ink:#2b1d0c; --muted:#7a6447; --line:#f0dfbf; --accent:#d94b22; --accent-ink:#ffffff;
-  --m-water:#8fd0e1; --m-out:#f1e2c2; --m-land:#fff7e6; --m-county:#ecd7ad; --m-hot:#d94b22; --m-urban:#f7e8c8;
-  --m-int:#d94b22; --m-case:#fff7e6; --m-us:#e3cc9b; --m-river:#74bfd3; --m-label:#7a6447; --m-halo:#fff7e6; --m-state:#b8975f;
+  --bg:#f0e9de; --panel:#fbf8f2; --ink:#2b1d0c; --muted:#7a6447; --line:#e9dec9; --accent:#c0582f; --accent-ink:#ffffff;
+  --m-water:#aacdd5; --m-out:#ebe2d0; --m-land:#faf5eb; --m-county:#e3d5b9; --m-hot:#c0582f; --m-urban:#f1e7d3;
+  --m-int:#c0582f; --m-case:#fff7e6; --m-us:#dacba9; --m-river:#95c0cb; --m-label:#7a6447; --m-halo:#faf5eb; --m-state:#b8975f;
   --c-festival:#d94b22; --c-market:#7a4fb5; --c-kids:#c98410; --c-yard:#2f8f6a; --c-church:#31556b; --c-community:#1a879e; --pin-ink:#ffffff;
   --shadow:0 12px 32px rgba(90,50,10,.15); color-scheme:light}
 
@@ -88,6 +88,7 @@ button,input{font:inherit;color:inherit}
 h1{font-family:var(--display);font-weight:var(--d-wt);font-size:var(--d-size);letter-spacing:var(--d-track);line-height:1;margin:8px 0 0;text-wrap:balance}
 /* Side Mission logo: dotted trail to a pin, lowercase wordmark. Pin follows the text colour so it works on every theme. */
 h1.brand{display:flex;align-items:center;gap:.28em;color:var(--brand-ink,var(--ink))}
+h1.brand a{color:inherit;text-decoration:none;display:flex;align-items:center;gap:.28em}
 h1.brand .mark{width:1.3em;height:1.3em;flex:none;margin:-.08em 0}
 #siteNameText{text-transform:lowercase}
 :root[data-season],:root[data-theme="dark"]{--brand-ink:var(--ink)}

@@ -94,8 +94,10 @@ const AL_BBOX=[[Math.min(...lngs),Math.min(...lats)],[Math.max(...lngs),Math.max
 const MASK={type:"Feature",properties:{},geometry:{type:"Polygon",coordinates:[[[-180,-85],[180,-85],[180,85],[-180,85],[-180,-85]],...RINGS]}};
 const EDGE={type:"Feature",properties:{},geometry:{type:"MultiLineString",coordinates:RINGS}};
 const activeTheme=()=>themePref==="auto"?monthTheme:themePref;
-const isDark=a=>a==="halloween"||a==="christmas"||(a==="none"&&(document.documentElement.getAttribute("data-theme")==="dark"||(document.documentElement.getAttribute("data-theme")!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches)));
-const TINT={harvest:"sepia(.3) saturate(.95)",winter:"saturate(.65) hue-rotate(-8deg) brightness(1.02)",spring:"saturate(.9) hue-rotate(-6deg)",summer:"sepia(.15) saturate(1.05)",
+// "No theme" is always a soft light map; only Halloween and Christmas are dark.
+const isDark=a=>a==="halloween"||a==="christmas";
+document.documentElement.setAttribute("data-theme","light");
+const TINT={none:"saturate(.8) brightness(.98)",harvest:"sepia(.22) saturate(.75) brightness(.97)",winter:"saturate(.55) hue-rotate(-8deg) brightness(.99)",spring:"saturate(.72) hue-rotate(-6deg) brightness(.98)",summer:"sepia(.12) saturate(.78) brightness(.97)",
 };
 function pad(x){x=x||0;return mobile()?{top:64+x,bottom:sheetVisible()+16+x,left:16+x,right:16+x}:{top:76+x,bottom:30+x,left:440+x,right:30+x}}
 let styleKind=isDark(activeTheme())?"dark":"light",usingOSM=false,styleReady=false;
@@ -322,7 +324,7 @@ function buildMenu(){
   const mt=THEMES.find(t=>t.id===monthTheme);
   const item=(id,name,small,sw)=>`<button type="button" role="menuitemradio" id="th-${id}" data-t="${id}" aria-checked="${themePref===id}"><span class="sw" style="background:${sw}"></span><span class="lab">${name}${small?`<small>${small}</small>`:""}</span>${CHECK}</button>`;
   $("themeMenu").innerHTML=item("auto","Match the month",`Now: ${mt.name}`,`conic-gradient(${THEMES.map((t,i)=>`${t.sw[0]} ${i*60}deg ${(i+1)*60}deg`).join(",")})`)
-   +item("none","No theme","Clean map, follows light/dark","linear-gradient(135deg,#faf8f4 50%,#1a2026 50%)")+"<hr>"
+   +item("none","No theme","Soft light map","linear-gradient(135deg,#f2f0eb 50%,#1d3557 50%)")+"<hr>"
    +THEMES.map(t=>item(t.id,t.name,t.note,`linear-gradient(135deg,${t.sw[0]} 50%,${t.sw[1]} 50%)`)).join("");
 }
 function applyTheme(){
@@ -330,7 +332,7 @@ function applyTheme(){
   if(active==="none")document.documentElement.removeAttribute("data-season");else document.documentElement.setAttribute("data-season",active);
   const t=THEMES.find(x=>x.id===active);
   $("themeName").textContent=active==="none"?"No theme":t.name;
-  $("themeSw").style.background=active==="none"?"linear-gradient(135deg,#faf8f4 50%,#1a2026 50%)":`linear-gradient(135deg,${t.sw[0]} 50%,${t.sw[1]} 50%)`;
+  $("themeSw").style.background=active==="none"?"linear-gradient(135deg,#f2f0eb 50%,#1d3557 50%)":`linear-gradient(135deg,${t.sw[0]} 50%,${t.sw[1]} 50%)`;
   document.querySelectorAll("#themeMenu button").forEach(b=>b.setAttribute("aria-checked",b.dataset.t===themePref));
   $("eyebrow").textContent=`Week of ${wkStart.toLocaleDateString("en-US",{month:"short",day:"numeric"})} · Alabama`;
   const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=css("--panel")||"#ffffff";
@@ -427,6 +429,11 @@ const fx=(()=>{
 })();
 
 // ---------- start ----------
+// Links from the landing page can preset the list: ?q=town, ?cat=yard, ?when=weekend
+const QP=new URLSearchParams(location.search);
+if(QP.get("q")){query=QP.get("q");$("q").value=query}
+if(QP.get("cat")&&CATS[QP.get("cat")]){on.clear();on.add(QP.get("cat"))}
+if(["weekend","week","all"].includes(QP.get("when"))){when=QP.get("when");document.querySelectorAll("#when button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.w===when))}
 setSheet("peek");buildLayerMenu();buildMenu();buildCats();buildSponsor();render();
 applyTheme();
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",styleMap);
@@ -435,5 +442,6 @@ window.addEventListener("resize",()=>map.resize());
 const want=(new URLSearchParams(location.search).get("e"))||location.hash.slice(1);
 const target=want&&upcoming.find(e=>e.id===want);
 if(target)map.once("load",()=>setTimeout(()=>openEvent(target),250));
+else if(QP.get("q")||QP.get("cat")||QP.get("when"))map.once("load",()=>setTimeout(fitEvents,250));
 else if(want&&EVENTS.some(e=>e.id===want))toast("That event has already happened");
 })();

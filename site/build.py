@@ -165,20 +165,23 @@ def main():
 <link rel="canonical" href="{esc(url)}"><link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <style>body{{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#efede8;color:#1c1e21}}main{{max-width:560px;margin:10vh auto;padding:0 16px}}
 .c{{background:#fff;border-radius:16px;padding:24px;border:1px solid #e2dfd8}}h1{{margin:0 0 8px;font-size:26px}}p{{color:#555}}a{{display:inline-block;margin-top:8px;background:#1d3557;color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}}</style>
-<script>location.replace("../?e={e['id']}");</script></head>
+<script>location.replace("../map.html?e={e['id']}");</script></head>
 <body><main><div class="c"><h1>{esc(e['title'])}</h1><p>{esc(when(e))}<br>{esc(e.get('addr') or e.get('place') or e.get('town',''))}</p><p>{esc(e.get('desc',''))}</p>
-<a href="../?e={e['id']}">Open on the map</a></div></main></body></html>"""
+<a href="../map.html?e={e['id']}">Open on the map</a></div></main></body></html>"""
         open(os.path.join(ROOT, "e", e["id"] + ".html"), "w").write(page); n += 1
     # remove share pages for events no longer in the data
     ids = {e["id"] for e in EVENTS}
     for f in os.listdir(os.path.join(ROOT, "e")):
         if os.path.splitext(f)[0] not in ids: os.remove(os.path.join(ROOT, "e", f))
     # point the homepage preview at the full image URL when we know it
-    idx = os.path.join(ROOT, "index.html"); s = open(idx).read()
-    s = re.sub(r'<meta property="og:image" content="[^"]*">', f'<meta property="og:image" content="{(BASE + "/og.png") if BASE else "og.png"}">', s)
-    open(idx, "w").write(s)
+    for page in ("index.html", "map.html"):
+        idx = os.path.join(ROOT, page)
+        if not os.path.exists(idx): continue
+        s = open(idx).read()
+        s = re.sub(r'<meta property="og:image" content="[^"]*">', f'<meta property="og:image" content="{(BASE + "/og.png") if BASE else "og.png"}">', s)
+        open(idx, "w").write(s)
     if BASE:
-        urls = [BASE + "/", BASE + "/submit.html"] + [f"{BASE}/e/{e['id']}.html" for e in EVENTS]
+        urls = [BASE + "/", BASE + "/map", BASE + "/submit.html"] + [f"{BASE}/e/{e['id']}.html" for e in EVENTS]
         open(os.path.join(ROOT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
             "".join(f"  <url><loc>{html.escape(u)}</loc></url>\n" for u in urls) + "</urlset>\n")
     print(f"Built {n} event pages" + ("" if BASE else " (set siteUrl in site.json for full Facebook preview links)"))

@@ -2,75 +2,382 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
-<title>Side Mission · Alabama events map</title>
-<meta name="description" content="Yard sales, festivals, markets, trunk-or-treats and church events across Alabama, updated every week.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Side Mission · Things to do in Alabama this weekend</title>
+<meta name="description" content="Festivals, markets, yard sales, trunk-or-treats and church events across Alabama, on one map. Updated every week.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Side Mission · Alabama events map">
-<meta property="og:description" content="Yard sales, festivals, markets and church events across Alabama, updated every week.">
+<meta property="og:title" content="Side Mission · Things to do in Alabama this weekend">
+<meta property="og:description" content="Festivals, markets, yard sales and church events across Alabama, on one map. Updated every week.">
 <meta property="og:image" content="https://sidemissionmap.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1d3557">
+<link rel="canonical" href="https://sidemissionmap.com/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Creepster&family=Fraunces:opsz,wght@9..144,600..800&family=Mountains+of+Christmas:wght@700&family=Josefin+Sans:wght@600;700&family=Shrikhand&display=swap">
-<link rel="stylesheet" href="assets/vendor/maplibre-gl.css">
-<link rel="stylesheet" href="assets/app.css">
-<style>html,body{margin:0}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Fraunces:opsz,wght@9..144,600..800&display=swap">
+<script>/* Old shared links pointed here with ?e=<event>; send them to the map. */
+(function(){var q=location.search;if(/[?&]e=/.test(q)||/^#\w/.test(location.hash))location.replace("map.html"+q+location.hash)})();</script>
+<style>
+:root{
+  --bg:#f3f1ec; --panel:#fbfaf7; --ink:#1c2333; --muted:#5d6470; --line:#e2ded6;
+  --navy:#1d3557; --navy-2:#2a4a73; --coral:#e76f51; --coral-ink:#b84a2f; --cream:#fbf6ee;
+  --display:"Fraunces",Georgia,serif; --body:"Bricolage Grotesque",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --c-festival:#c4452c; --c-market:#6d4bb3; --c-kids:#c57d0f; --c-yard:#2f8a5b; --c-church:#2f5d86; --c-community:#b23a6e;
+  --season:#e76f51; --season-soft:#fbe5dc;
+  --shadow:0 1px 2px rgba(20,30,50,.05),0 10px 30px rgba(20,30,50,.08);
+  color-scheme:light;
+}
+:root[data-season="halloween"]{--season:#d9661c;--season-soft:#fbe3d0}
+:root[data-season="harvest"]{--season:#a24a28;--season-soft:#f3e2d6}
+:root[data-season="christmas"]{--season:#b8322e;--season-soft:#f6dcda}
+:root[data-season="winter"]{--season:#3a6796;--season-soft:#dde7f1}
+:root[data-season="spring"]{--season:#ad4a6e;--season-soft:#f3dde6}
+:root[data-season="summer"]{--season:#c0582f;--season-soft:#f7e2d6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--navy)}a:hover{color:var(--coral-ink)}
+img,svg{display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:12px;font:600 16px/1 var(--body);text-decoration:none;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px);border-color:#cfc9be;color:var(--ink)}
+.btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn.primary:hover{background:var(--navy-2);color:#fff}
+.btn svg{width:18px;height:18px;fill:currentColor}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--display);color:var(--navy);letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(28px,3.4vw,40px);line-height:1.1}
+.sec{padding:72px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head p{margin:8px 0 0;color:var(--muted);max-width:560px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.top.scrolled{border-bottom-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--navy);font:800 25px/1 var(--display);letter-spacing:-.03em}
+.logo svg{width:34px;height:34px}
+.nav{display:flex;gap:6px;margin-left:auto;align-items:center}
+.nav a{padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.nav a:hover{background:var(--panel)}
+.nav .btn{min-height:42px;padding:0 16px;font-size:15px;margin-left:6px}
+@media (max-width:760px){.nav a:not(.btn){display:none}}
+
+/* hero */
+.hero{padding:48px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;background:var(--season-soft);color:var(--season);font-weight:700;font-size:14px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--season);box-shadow:0 0 0 4px color-mix(in srgb,var(--season) 22%,transparent)}
+.hero h1{font-size:clamp(42px,6vw,74px);line-height:.98;margin:18px 0 18px;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--coral)}
+.hero .lede{font-size:19px;color:var(--muted);max-width:520px;margin:0 0 26px}
+.find{display:flex;gap:8px;max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:var(--shadow)}
+.find label{flex:1;display:flex;align-items:center;gap:10px;padding:0 10px;min-width:0}
+.find label svg{width:20px;height:20px;fill:var(--muted);flex:none}
+.find input{flex:1;min-width:0;border:0;background:transparent;font:500 17px var(--body);color:var(--ink);height:46px;outline:none}
+.find input::placeholder{color:#8a909a}
+.find .btn{min-height:46px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.hero-actions a.text{font-weight:600;text-decoration:none}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px}
+.stats div b{display:block;font:800 34px/1 var(--display);color:var(--navy);letter-spacing:-.02em}
+.stats div span{font-size:14px;color:var(--muted);font-weight:600}
+
+.mapcard{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:22px;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mapcard svg.al{width:100%;height:100%}
+.mapcard .state{fill:#ecece6;stroke:#c9c2b4;stroke-width:1.2;stroke-linejoin:round}
+.mapcard .trail{fill:none;stroke:var(--coral);stroke-width:3;stroke-linecap:round;stroke-dasharray:1 9;opacity:.7}
+.pin{transform-box:fill-box;transform-origin:50% 100%;animation:drop .5s cubic-bezier(.2,1.4,.4,1) both}
+.pin.now circle.halo{animation:pulse 2.2s ease-out infinite}
+@keyframes drop{from{transform:translateY(-14px) scale(.4);opacity:0}to{transform:none;opacity:1}}
+@keyframes pulse{0%{r:6;opacity:.5}100%{r:18;opacity:0}}
+.mapcard .tag{position:absolute;left:18px;bottom:16px;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;font-weight:600;display:flex;gap:8px;align-items:center}
+.mapcard .tag i{width:10px;height:10px;border-radius:50%;background:var(--coral)}
+.mapcard a.open{position:absolute;right:16px;top:16px;min-height:40px;font-size:14px;padding:0 14px}
+@media (prefers-reduced-motion:reduce){.pin,.pin.now circle.halo{animation:none}}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.cat{display:flex;flex-direction:column;gap:14px;padding:20px 18px;border-radius:18px;background:var(--panel);border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .15s,box-shadow .15s,border-color .15s;min-height:150px}
+.cat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#d6d0c5;color:var(--ink)}
+.cat i{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.cat i svg{width:24px;height:24px;fill:#fff}
+.cat b{font-size:17px;line-height:1.2}
+.cat span{font-size:14px;color:var(--muted);margin-top:auto}
+@media (max-width:980px){.cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* this weekend */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{display:flex;gap:16px;padding:18px;border-radius:18px;background:var(--panel);border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);color:var(--ink)}
+.date{flex:none;width:58px;border-radius:12px;background:var(--cream);border:1px solid var(--line);text-align:center;padding:8px 0 7px;align-self:flex-start}
+.date small{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--coral-ink)}
+.date b{display:block;font:800 24px/1.05 var(--display);color:var(--navy)}
+.card .t{font-weight:700;font-size:17px;line-height:1.25;margin:2px 0 6px}
+.card .m{font-size:14px;color:var(--muted)}
+.card .m i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.card .free{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:#256c48;background:#e3f2e9;border-radius:6px;padding:2px 7px}
+.empty{color:var(--muted);padding:24px;border:1px dashed var(--line);border-radius:18px;text-align:center}
+@media (max-width:980px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.cards{grid-template-columns:minmax(0,1fr)}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.step{padding:26px;border-radius:20px;background:var(--panel);border:1px solid var(--line)}
+.step .n{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;font:800 18px/40px var(--display);text-align:center;margin-bottom:16px}
+.step h3{font-size:22px;margin-bottom:6px}
+.step p{margin:0;color:var(--muted)}
+@media (max-width:820px){.how{grid-template-columns:minmax(0,1fr)}}
+
+/* signup */
+.band{background:var(--navy);color:#e9eef6;border-radius:28px;padding:48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;position:relative;overflow:hidden}
+.band h2{color:#fff}
+.band p{color:#c6d1e2;margin:10px 0 0}
+.band form{display:flex;gap:10px;flex-wrap:wrap}
+.band label.em{flex:1 1 240px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#c6d1e2}
+.band input[type=email]{height:50px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font:500 17px var(--body);padding:0 14px;outline:none}
+.band input[type=email]:focus{border-color:#fff}
+.band input[type=email]::placeholder{color:#9eb0c8}
+.band .btn{align-self:flex-end;background:var(--coral);border-color:var(--coral);color:#22140f;min-height:50px}
+.band .btn:hover{background:#ee8a70;color:#22140f}
+.band .note{flex-basis:100%;font-size:14px;color:#9eb0c8;margin:0}
+.band .ok{flex-basis:100%;font-weight:700;color:#fff;margin:0}
+.band svg.deco{position:absolute;right:-30px;bottom:-40px;width:260px;height:260px;opacity:.12;pointer-events:none}
+.hp{position:absolute;left:-9999px}
+@media (max-width:820px){.band{grid-template-columns:minmax(0,1fr);padding:32px 24px}}
+
+/* businesses */
+.biz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.biz .box{padding:30px;border-radius:22px;background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.biz .box h3{font-size:26px}
+.biz .box p{margin:0;color:var(--muted)}
+.biz .box ul{margin:0;padding-left:20px;color:var(--ink)}
+.biz .box .btn{align-self:flex-start;margin-top:8px}
+@media (max-width:820px){.biz{grid-template-columns:minmax(0,1fr)}}
+
+footer{padding:40px 0 56px;border-top:1px solid var(--line);margin-top:24px}
+footer .wrap{display:flex;gap:24px;justify-content:space-between;flex-wrap:wrap;align-items:flex-start}
+footer p{margin:8px 0 0;color:var(--muted);font-size:15px;max-width:360px}
+footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:15px}
+footer nav a{text-decoration:none}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+@media (max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.mapcard{max-width:520px;width:100%;margin:0 auto}}
+@media (max-width:520px){.wrap{padding:0 16px}.sec{padding:52px 0}.hero{padding:28px 0 24px}.find{flex-direction:column}.find .btn{width:100%}.stats{gap:20px}.stats div b{font-size:28px}}
+</style>
 </head>
 <body>
-<div class="app">
-  <div class="map-wrap">
-    <div id="map" aria-label="Side Mission map of Alabama events"></div>
-    <canvas id="fx" aria-hidden="true"></canvas>
-    <div class="tools">
-      <button type="button" class="tbtn" id="nearBtn" title="Show events near me"><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm9 3h-2.1A7 7 0 0 0 13 5.1V3h-2v2.1A7 7 0 0 0 5.1 11H3v2h2.1a7 7 0 0 0 5.9 5.9V21h2v-2.1a7 7 0 0 0 5.9-5.9H21zm-9 6a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg><span class="hide-sm">Near me</span></button>
-      <button type="button" class="tbtn" id="stateBtn" title="Show all of Alabama"><svg viewBox="0 0 24 24"><path d="M9 3l6 2 6-2v16l-6 2-6-2-6 2V5zm1 2.3v12.5l4 1.3V6.6z"/></svg><span class="hide-sm">All Alabama</span></button>
-      <div style="position:relative">
-        <button type="button" class="tbtn" id="layerBtn" aria-haspopup="true" aria-expanded="false" title="Map type"><svg viewBox="0 0 24 24" id="layerIcon"></svg><span class="hide-sm" id="layerName">Map</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6z"/></svg></button>
-        <div class="menu" id="layerMenu" role="menu" hidden></div>
-      </div>
-      <div style="position:relative">
-        <button type="button" class="tbtn" id="themeBtn" aria-haspopup="true" aria-expanded="false"><span class="sw" id="themeSw"></span><span id="themeName">Theme</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6z"/></svg></button>
-        <div class="menu" id="themeMenu" role="menu" hidden></div>
-      </div>
-    </div>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Side Mission home">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M12 70 C 44 72 50 54 32 48 C 14 42 20 31 58 32" fill="none" stroke="#e76f51" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 8.5"/><circle cx="12" cy="70" r="5.5" fill="#1d3557"/><path d="M58 32c0 0-13-12.5-13-20.5a13 13 0 0 1 26 0c0 8-13 20.5-13 20.5z" fill="#1d3557"/><circle cx="58" cy="11.5" r="5" fill="#f3f1ec"/></svg>
+      side mission
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#weekend">This weekend</a>
+      <a href="#types">Browse</a>
+      <a href="#business">For businesses</a>
+      <a class="btn primary" href="map.html">Open the map</a>
+    </nav>
   </div>
-  <aside class="panel">
-    <button type="button" class="grab" id="grab" aria-label="Show more events" aria-expanded="false"><span></span></button>
-    <div class="p-head">
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
       <div>
-        <div class="eyebrow"><span class="live"></span><span id="eyebrow">This week in Alabama</span></div>
-        <h1 id="siteName" class="brand"><svg class="mark" viewBox="0 0 80 80" aria-hidden="true"><path d="M12 70 C 44 72 50 54 32 48 C 14 42 20 31 58 32" fill="none" stroke="var(--brand-trail)" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 8.5"/><circle cx="12" cy="70" r="5.5" fill="currentColor"/><path d="M58 32c0 0-13-12.5-13-20.5a13 13 0 0 1 26 0c0 8-13 20.5-13 20.5z" fill="currentColor"/><circle cx="58" cy="11.5" r="5" fill="var(--panel)"/></svg><span id="siteNameText">Side Mission</span></h1>
+        <span class="pill"><i></i><span id="seasonLine">Updated every week</span></span>
+        <h1>Find something to do <em>this weekend.</em></h1>
+        <p class="lede">Festivals, markets, yard sales, trunk-or-treats and church events across Alabama, all on one map. Free to use, checked every week.</p>
+        <form class="find" action="map.html" method="get" role="search">
+          <label><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
+            <span class="hp">Town or event</span><input name="q" type="search" placeholder="Search a town or event" autocomplete="off"></label>
+          <button class="btn primary" type="submit">Search the map</button>
+        </form>
+        <div class="hero-actions">
+          <a class="btn" href="map.html?when=weekend">See this weekend on the map</a>
+          <a class="text" href="submit.html">Have an event? List it free →</a>
+        </div>
+        <div class="stats" aria-live="polite">
+          <div><b id="nUp">–</b><span>upcoming events</span></div>
+          <div><b id="nTowns">–</b><span>towns</span></div>
+          <div><b id="nFree">–</b><span>free to attend</span></div>
+        </div>
       </div>
-      <div class="stats">
-        <div class="stat"><b id="sTotal">–</b><span>Upcoming</span></div>
-        <div class="stat"><b id="sWeekend">–</b><span>This weekend</span></div>
-        <div class="stat"><b id="sFree">–</b><span>Free</span></div>
-      </div>
-      <div class="top-actions">
-        <a class="btn primary" href="submit.html"><svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>Submit an event</a>
-        <a class="btn" href="submit.html?type=featured">Get featured</a>
+      <div class="mapcard">
+        <svg class="al" id="alMap" role="img" aria-label="Map of Alabama with a pin for each upcoming event"></svg>
+        <a class="btn open" href="map.html">Open the map</a>
+        <div class="tag"><i></i><span id="mapTag">Pins show upcoming events</span></div>
       </div>
     </div>
-    <div class="p-controls">
-      <label class="search" for="q"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
-        <input id="q" type="search" placeholder="Search events, towns, churches…" autocomplete="off"></label>
-      <div class="seg" id="when" role="group" aria-label="When">
-        <button type="button" id="w-weekend" data-w="weekend" aria-pressed="false">This weekend</button>
-        <button type="button" id="w-week" data-w="week" aria-pressed="false">Next 7 days</button>
-        <button type="button" id="w-all" data-w="all" aria-pressed="true">All upcoming</button>
-      </div>
-      <div class="chips" id="cats" role="group" aria-label="Categories"></div>
-      <div id="sponsorSlot"></div>
+  </section>
+
+  <section class="sec" id="types" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><span class="eyebrow">Browse</span><h2>What are you in the mood for?</h2></div></div>
+      <div class="cats reveal" id="cats"></div>
     </div>
-    <div class="p-list" id="list" aria-label="Event list"><p class="empty">Loading this week’s events…</p></div>
-  </aside>
-</div>
-<div class="toast" id="toast" hidden></div>
-<script src="assets/vendor/maplibre-gl.js"></script>
+  </section>
+
+  <section class="sec" id="weekend" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><span class="eyebrow" id="wkLabel">This weekend</span><h2>Happening this weekend</h2><p>A few picks from the map. Tap one to see it on the map with directions.</p></div>
+        <a class="btn" href="map.html?when=weekend">See all on the map</a>
+      </div>
+      <div class="cards reveal" id="cards"><p class="empty">Loading this weekend’s events…</p></div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><span class="eyebrow">How it works</span><h2>Your weekend, mapped</h2></div></div>
+      <div class="how reveal">
+        <div class="step"><div class="n">1</div><h3>Browse the map</h3><p>Every pin is a real event with a date, time and address. Filter by type, town or this weekend.</p></div>
+        <div class="step"><div class="n">2</div><h3>Save your picks</h3><p>Heart the ones you like, add them to your calendar, or get directions straight from the map.</p></div>
+        <div class="step"><div class="n">3</div><h3>Share or submit</h3><p>Send an event to friends in one tap, or list your own yard sale, market or church event for free.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:24px">
+    <div class="wrap">
+      <div class="band reveal">
+        <svg class="deco" viewBox="0 0 80 80" aria-hidden="true"><path d="M12 70 C 44 72 50 54 32 48 C 14 42 20 31 58 32" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 8.5"/><path d="M58 32c0 0-13-12.5-13-20.5a13 13 0 0 1 26 0c0 8-13 20.5-13 20.5z" fill="#fff"/></svg>
+        <div><h2>Get the weekend list</h2><p>One email before the weekend with the best events near you. No spam, unsubscribe anytime.</p></div>
+        <form id="signup">
+          <label class="em">Your email<input type="email" name="email" required placeholder="you@example.com" autocomplete="email"></label>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" aria-hidden="true">
+          <button class="btn" type="submit" id="signBtn">Sign me up</button>
+          <p class="note" id="signNote">We’ll only use your email to send the weekend list.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="business" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><span class="eyebrow">For organizers and businesses</span><h2>Get your event in front of Alabama</h2></div></div>
+      <div class="biz reveal">
+        <div class="box"><h3>List an event, free</h3><p>Yard sales, festivals, markets, church and school events. We check every listing, usually within a day.</p><ul><li>Shows on the map and in the weekly list</li><li>Its own share page for Facebook and texts</li></ul><a class="btn primary" href="submit.html">Submit an event</a></div>
+        <div class="box"><h3>Get featured or sponsor</h3><p>Put your event at the top with a Featured badge, or sponsor the map for a season and reach local families every week.</p><ul><li>Featured pin and badge</li><li>Sponsor spot on the map panel</li></ul><a class="btn" href="submit.html?type=featured">Ask about featuring</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="./" aria-label="Side Mission home"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M12 70 C 44 72 50 54 32 48 C 14 42 20 31 58 32" fill="none" stroke="#e76f51" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 8.5"/><circle cx="12" cy="70" r="5.5" fill="#1d3557"/><path d="M58 32c0 0-13-12.5-13-20.5a13 13 0 0 1 26 0c0 8-13 20.5-13 20.5z" fill="#1d3557"/><circle cx="58" cy="11.5" r="5" fill="#f3f1ec"/></svg>side mission</a>
+      <p>Community events across Alabama, updated every week. Questions or corrections: <a href="mailto:sidemissionmap@gmail.com">sidemissionmap@gmail.com</a></p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="map.html">Map</a><a href="map.html?when=weekend">This weekend</a><a href="submit.html">Submit an event</a><a href="submit.html?type=correction">Fix a listing</a><a href="submit.html?type=featured">Advertise</a>
+    </nav>
+  </div>
+</footer>
+
 <script src="assets/basemap.js"></script>
-<script src="assets/app.js"></script>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const CATS={
+  festival:{name:"Festivals",g:'<path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/>'},
+  market:{name:"Markets & vendors",g:'<path fill-rule="evenodd" d="M6 7V6a6 6 0 0 1 12 0v1h3l-1 15H4L3 7zm2 0h8V6a4 4 0 0 0-8 0z"/>'},
+  kids:{name:"Kids & trunk-or-treat",g:'<path d="M12 2a7 7 0 0 1 7 7c0 4.4-3.6 8-7 8s-7-3.6-7-8a7 7 0 0 1 7-7zm-1 15.5h2l-.4 1.4c1 .8 1 2.3 0 3.1l-1-.6c.5-.4.5-1.1 0-1.5z"/>'},
+  yard:{name:"Yard & estate sales",g:'<path fill-rule="evenodd" d="M3 3h8l10 10-8 8L3 11zm4.5 2.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>'},
+  church:{name:"Church events",g:'<path d="M10.5 2h3v5h5v3h-5v12h-3V10h-5V7h5z"/>'},
+  community:{name:"Community & food",g:'<path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/>'}
+};
+// dates (same rules as the map)
+const D=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const today=new Date();today.setHours(0,0,0,0);
+const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const dow=today.getDay();
+const wkStart=(dow===5||dow===6||dow===0)?today:add(today,5-dow);
+const wkEnd=dow===0?today:add(wkStart,(7-wkStart.getDay())%7);
+const endOf=e=>e.end?D(e.end):(e.openEnded?new Date(2100,0,1):D(e.start));
+const overlaps=(e,a,b)=>D(e.start)<=b&&endOf(e)>=a;
+const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mon=d=>d.toLocaleDateString("en-US",{month:"short"});
+
+// seasonal line
+const SEASON=[["winter","Winter in Alabama"],["winter","Winter in Alabama"],["spring","Spring festival season"],["spring","Spring festival season"],["spring","Spring festival season"],
+  ["summer","Summer in Alabama"],["summer","Summer in Alabama"],["summer","Summer in Alabama"],["harvest","Fall festival season"],["halloween","Spooky season is here"],["harvest","Holiday market season"],["christmas","Christmas in Alabama"]][today.getMonth()];
+document.documentElement.setAttribute("data-season",SEASON[0]);$("seasonLine").textContent=SEASON[1];
+$("wkLabel").textContent=`${mon(wkStart)} ${wkStart.getDate()}${+wkEnd!==+wkStart?"–"+(wkEnd.getMonth()!==wkStart.getMonth()?mon(wkEnd)+" ":"")+wkEnd.getDate():""}`;
+
+// little Alabama map
+const rings=(window.GEO&&GEO.al)||[];
+const all=rings.flat(),la0=Math.min(...all.map(p=>p[0])),la1=Math.max(...all.map(p=>p[0])),ln0=Math.min(...all.map(p=>p[1])),ln1=Math.max(...all.map(p=>p[1]));
+const kx=Math.cos((la0+la1)/2*Math.PI/180),W=(ln1-ln0)*kx*100,H=(la1-la0)*100,PADM=10;
+const X=ln=>(ln-ln0)*kx*100+PADM,Y=la=>(la1-la)*100+PADM;
+const svg=$("alMap");svg.setAttribute("viewBox",`0 0 ${W+PADM*2} ${H+PADM*2}`);
+svg.innerHTML=`<path class="state" d="${rings.map(r=>"M"+r.map(p=>X(p[1]).toFixed(1)+","+Y(p[0]).toFixed(1)).join("L")+"Z").join("")}"/>`;
+
+function pins(list){
+  const now=list.filter(e=>overlaps(e,wkStart,wkEnd));
+  const g=list.slice().sort((a,b)=>b.lat-a.lat).map((e,i)=>{
+    const x=X(e.lng),y=Y(e.lat),c=`var(--c-${e.cat})`,isNow=now.includes(e);
+    return `<g class="pin${isNow?" now":""}" style="animation-delay:${(300+i*35)}ms"><title>${esc(e.title)} · ${esc(e.town)}</title>${isNow?`<circle class="halo" cx="${x}" cy="${y-9}" r="6" fill="${c}"/>`:""}<path d="M${x} ${y}c0 0-7-6.8-7-11.2a7 7 0 0 1 14 0c0 4.4-7 11.2-7 11.2z" fill="${c}" stroke="#fff" stroke-width="1.6"/><circle cx="${x}" cy="${y-11}" r="2.4" fill="#fff"/></g>`}).join("");
+  svg.insertAdjacentHTML("beforeend",g);
+  $("mapTag").textContent=`${list.length} upcoming events · ${now.length} this weekend`;
+}
+
+function card(e){
+  const s0=D(e.start),ongoing=s0<wkStart,d=ongoing?wkStart:s0,multi=e.end&&e.end!==e.start,free=/^free/i.test(e.cost||"");
+  return `<a class="card" href="map.html?e=${encodeURIComponent(e.id)}"><div class="date"><small>${ongoing?"Now":mon(d)}</small><b>${ongoing?"On":d.getDate()}</b></div>
+    <div><div class="t">${esc(e.title)}</div><div class="m"><i style="background:var(--c-${e.cat})"></i>${esc(e.town)}${e.time&&!e.timeTBD?" · "+esc(e.time):""}${multi&&!/through/i.test(e.time||"")?" · through "+mon(D(e.end))+" "+D(e.end).getDate():""}</div>${free?'<span class="free">Free</span>':""}</div></a>`;
+}
+
+fetch("data/events.json",{cache:"no-cache"}).then(r=>r.json()).then(EV=>{
+  const up=EV.filter(e=>endOf(e)>=today);
+  $("nUp").textContent=up.length;
+  $("nTowns").textContent=new Set(up.map(e=>e.town)).size;
+  $("nFree").textContent=up.filter(e=>/^free/i.test(e.cost||"")).length;
+  pins(up);
+  $("cats").innerHTML=Object.entries(CATS).map(([k,c])=>{const n=up.filter(e=>e.cat===k).length;
+    return `<a class="cat" href="map.html?cat=${k}"><i style="background:var(--c-${k})"><svg viewBox="0 0 24 24" aria-hidden="true">${c.g}</svg></i><b>${c.name}</b><span>${n} upcoming</span></a>`}).join("");
+  // this weekend: featured first, then a mix of categories, soonest first
+  // events that start this weekend come before ones already running; yard and estate sales last
+  const rank=e=>(e.featured?0:2)+(D(e.start)<wkStart?2:0)+(e.cat==="yard"?1:0);
+  const wk=up.filter(e=>overlaps(e,wkStart,wkEnd)).sort((a,b)=>rank(a)-rank(b)||D(a.start)-D(b.start));
+  // spread the picks across the weekend's days and across categories and towns
+  const byDay={};wk.forEach(e=>{const k=D(e.start)<wkStart?"on":e.start;(byDay[k]=byDay[k]||[]).push(e)});
+  const days=Object.keys(byDay).sort((x,y)=>(x==="on")-(y==="on")||x.localeCompare(y));
+  const pick=[],seen={},towns={};
+  for(let round=0;round<8&&pick.length<6;round++)for(const k of days){if(pick.length>=6)break;
+    const e=byDay[k].find(e=>!pick.includes(e)&&(seen[e.cat]||0)<2&&!towns[e.town]);
+    if(e){pick.push(e);seen[e.cat]=(seen[e.cat]||0)+1;towns[e.town]=1}}
+  for(const e of wk){if(pick.length>=6)break;if(!pick.includes(e))pick.push(e)}
+  pick.sort((x,y)=>(D(x.start)<wkStart)-(D(y.start)<wkStart)||D(x.start)-D(y.start));
+  $("cards").innerHTML=pick.length?pick.map(card).join(""):`<p class="empty">Nothing on the map for this weekend yet. <a href="map.html">See everything coming up</a>.</p>`;
+}).catch(()=>{$("cards").innerHTML='<p class="empty">Couldn’t load events right now. <a href="map.html">Open the map</a>.</p>'});
+
+// weekly email signup (sent to the site inbox through Web3Forms)
+let key=null;fetch("site.json",{cache:"no-cache"}).then(r=>r.json()).then(s=>{key=s.form&&s.form.web3formsKey}).catch(()=>{});
+$("signup").addEventListener("submit",async ev=>{
+  ev.preventDefault();const f=ev.target,btn=$("signBtn");
+  if(f.botcheck.checked){f.innerHTML='<p class="ok">Thanks! You’re on the list.</p>';return}
+  if(!key){$("signNote").textContent="Sign-up isn’t available right now. Please try again later.";return}
+  btn.disabled=true;btn.textContent="Signing up…";
+  const fd=new FormData();fd.append("access_key",key);fd.append("subject","Side Mission: weekend list sign-up");fd.append("from_name","Side Mission");
+  fd.append("request_type","Weekend list sign-up");fd.append("email",f.email.value);
+  try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",body:fd,headers:{Accept:"application/json"}});const j=await r.json().catch(()=>({}));
+    if(!r.ok||j.success===false)throw 0;f.innerHTML='<p class="ok">Thanks! You’re on the list for the weekend email.</p>'}
+  catch(x){btn.disabled=false;btn.textContent="Sign me up";$("signNote").textContent="That didn’t go through. Please try again in a minute."}
+});
+
+// small touches
+const top=$("top");addEventListener("scroll",()=>top.classList.toggle("scrolled",scrollY>8),{passive:true});
+const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"}):null;
+document.querySelectorAll(".reveal").forEach(el=>io?io.observe(el):el.classList.add("in"));
+})();
+</script>
 </body>
 </html>
