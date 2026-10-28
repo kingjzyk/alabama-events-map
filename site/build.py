@@ -15,7 +15,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = json.load(open(os.path.join(ROOT, "site.json")))
 EVENTS = json.load(open(os.path.join(ROOT, "data", "events.json")))
 BASE = (SITE.get("siteUrl") or "").rstrip("/")
-NAME = SITE.get("siteName", "Alabama Events Map")
+NAME = SITE.get("siteName", "Side Mission")
 CATS = {"festival": ("Festival", "#c4452c"), "market": ("Market & vendors", "#6d4bb3"), "kids": ("Kids & trunk-or-treat", "#c57d0f"),
         "yard": ("Yard sale", "#2f8a5b"), "church": ("Church event", "#2f5d86"), "community": ("Community", "#b23a6e")}
 

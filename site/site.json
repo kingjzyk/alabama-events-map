@@ -1,14 +1,14 @@
 {
-  "siteName": "Alabama Events Map",
+  "siteName": "Side Mission",
   "tagline": "Yard sales, festivals, markets and church events across Alabama, updated every week.",
-  "siteUrl": "https://alabama-events-map.netlify.app",
+  "siteUrl": "https://sidemissionmap.com",
   "tiles": {
     "cartoKey": "cb1_4tqz_1_caf00c2109125cc7c28e71f8",
     "_help": "Free CARTO basemap key for the Google/Apple-style map. Leave empty to use OpenStreetMap."
   },
   "sponsor": null,
   "form": {
-    "web3formsKey": "",
+    "web3formsKey": "6ce2596e-de8a-424d-b695-398bc2cf0b2b",
     "_help": "Web3Forms access key (free, from web3forms.com). When set, the Submit form emails entries through Web3Forms instead of Netlify Forms."
   }
 }

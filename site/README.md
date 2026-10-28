@@ -1,10 +1,10 @@
-# Alabama Events Map — your website
+# Side Mission — your website
 
 Everything in this folder is the website. There's no server or database to run.
 
 ## Where it's hosted
 
-The site is on **Cloudflare Pages** (free), connected to the GitHub repo. Every push to `main` that changes the `site/` folder publishes automatically in a minute or two. Visitor numbers are under **Cloudflare → Workers & Pages → the project → Metrics / Web Analytics**.
+The site is **sidemissionmap.com**, on **Cloudflare** (free, project "sidemission"), connected to the GitHub repo. Every push to `main` that changes the `site/` folder publishes automatically in a minute or two. Visitor numbers are under **Cloudflare → Web Analytics → sidemissionmap.com**.
 
 ## Get submissions by email
 

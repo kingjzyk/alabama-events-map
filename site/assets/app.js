@@ -1,4 +1,4 @@
-/* Alabama Events Map — site script.
+/* Side Mission (Alabama events map) — site script.
    Events live in data/events.json and site settings in site.json; edit those, not this file. */
 (async function(){
 const GEO=window.GEO;
@@ -9,7 +9,7 @@ const mobile=()=>window.matchMedia("(max-width:820px)").matches;
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 function toast(msg){const t=$("toast");t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2200)}
 
-let SITE={siteName:"Alabama Events Map",tiles:null,sponsor:null},EVENTS=[];
+let SITE={siteName:"Side Mission",tiles:null,sponsor:null},EVENTS=[];
 try{SITE=Object.assign(SITE,await (await fetch("site.json",{cache:"no-cache"})).json())}catch(e){}
 try{EVENTS=await (await fetch("data/events.json",{cache:"no-cache"})).json()}catch(e){$("list").innerHTML='<p class="empty">Events could not load. Refresh the page to try again.</p>';return}
 $("siteName").textContent=SITE.siteName;

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Submit an Event · Alabama Events Map</title>
-<meta name="description" content="Add your yard sale, festival, market or church event to the Alabama Events Map. Free.">
+<title>Submit an Event · Side Mission</title>
+<meta name="description" content="Add your yard sale, festival, market or church event to Side Mission, the Alabama events map. Free.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,8 +133,8 @@ button.submit:hover{filter:brightness(1.06)}
     if(form.company_website.value){location.href="thanks.html";return} // bot filled the hidden field
     const btn=document.getElementById("btn"),label=btn.textContent;btn.disabled=true;btn.textContent="Sending…";
     const fd=new FormData(form);fd.delete("form-name");fd.delete("company_website");
-    fd.append("access_key",key);fd.append("subject","Alabama Events Map: "+fd.get("request_type")+" – "+(fd.get("event_name")||""));
-    fd.append("from_name","Alabama Events Map");
+    fd.append("access_key",key);fd.append("subject","Side Mission: "+fd.get("request_type")+" – "+(fd.get("event_name")||""));
+    fd.append("from_name","Side Mission");
     try{
       const r=await fetch("https://api.web3forms.com/submit",{method:"POST",body:fd,headers:{Accept:"application/json"}});
       const j=await r.json().catch(()=>({}));

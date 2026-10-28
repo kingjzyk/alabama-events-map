@@ -1,7 +1,7 @@
-# Alabama Events Map
+# Side Mission (Alabama Events Map)
 
 Weekly interactive map of community events across Alabama. The address is `siteUrl` in `site/site.json`.
-Cloudflare Pages publishes the `site/` folder automatically on every push to `main` that changes something in `site/`. `archive/` is private and never published. The old Netlify address only redirects to the new one (`netlify-redirect/`); don't change it.
+The site is **Side Mission** at https://sidemissionmap.com, hosted on Cloudflare (Workers project `sidemission`, set by `wrangler.jsonc`). Cloudflare publishes the `site/` folder automatically on every push to `main`. `archive/` is private and never published. The old Netlify address only redirects to the new one (`netlify-redirect/`); don't change it.
 
 ## Layout
 - `site/data/events.json`: every listed event. This is the file the scans edit.
