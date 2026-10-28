@@ -3,7 +3,7 @@
    on phones it stacks title → map → filters → list. "No theme" is a clean atlas look that follows light/dark; seasonal skins restyle page, map and pins. */
 :root{
   --body:"Bricolage Grotesque",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif; --d-wt:800; --d-size:30px; --d-track:-.025em;
+  --display:"Fraunces",Georgia,serif; --d-wt:800; --d-size:32px; --d-track:-.03em; --brand-ink:#1d3557; --brand-trail:#e76f51;
   --bg:#efede8; --panel:#ffffff; --ink:#1c1e21; --muted:#686c73; --line:#e6e3dd; --accent:#a3263a; --accent-ink:#ffffff;
   --m-water:#bcd3dd; --m-out:#e7e3db; --m-land:#faf8f4; --m-county:#ddd6c8; --m-hot:#a3263a; --m-urban:#efe7d8;
   --m-int:#d9822b; --m-case:#ffffff; --m-us:#cdbfa5; --m-river:#93b7c8; --m-label:#5d6168; --m-halo:#faf8f4; --m-state:#8a8272;
@@ -86,6 +86,13 @@ button,input{font:inherit;color:inherit}
 .eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:650}
 .eyebrow .live{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
 h1{font-family:var(--display);font-weight:var(--d-wt);font-size:var(--d-size);letter-spacing:var(--d-track);line-height:1;margin:8px 0 0;text-wrap:balance}
+/* Side Mission logo: dotted trail to a pin, lowercase wordmark. Pin follows the text colour so it works on every theme. */
+h1.brand{display:flex;align-items:center;gap:.28em;color:var(--brand-ink,var(--ink))}
+h1.brand .mark{width:1.3em;height:1.3em;flex:none;margin:-.08em 0}
+#siteNameText{text-transform:lowercase}
+:root[data-season],:root[data-theme="dark"]{--brand-ink:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--brand-ink:var(--ink)}}
+:root[data-season]{--brand-trail:var(--accent)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .stat{padding:9px 10px;border-radius:11px;background:color-mix(in srgb,var(--ink) 4%,transparent)}
 .stat b{display:block;font-size:20px;line-height:1.05;font-weight:750;font-variant-numeric:tabular-nums;letter-spacing:-.02em}

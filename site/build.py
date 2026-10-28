@@ -28,6 +28,34 @@ def font(size, bold=True):
             return ImageFont.truetype(p, size)
     return ImageFont.load_default()
 
+def brand_font(size):
+    p = os.path.join(os.path.dirname(ROOT), "tools", "fonts", "Fraunces.ttf")
+    if os.path.exists(p):
+        f = ImageFont.truetype(p, size)
+        try: f.set_variation_by_axes([72, 800, 0, 0])
+        except Exception: pass
+        return f
+    return font(size)
+
+def bez(p0, p1, p2, p3, n=200):
+    return [tuple((1-t)**3*a + 3*(1-t)**2*t*b + 3*(1-t)*t**2*c + t**3*d for a, b, c, d in zip(p0, p1, p2, p3)) for t in (i/n for i in range(n+1))]
+
+def draw_brand(img, x, y, size, ink="#1d3557", trail="#e76f51", bg="#faf8f4"):
+    """Side Mission logo: dotted trail to a pin (80-unit artwork scaled to `size`), then the lowercase wordmark."""
+    d = ImageDraw.Draw(img); k = size / 80; P = lambda a, b: (x + a*k, y + b*k)
+    pts = bez((12,70),(44,72),(50,54),(32,48)) + bez((32,48),(14,42),(20,31),(58,32))
+    run, last = 0.0, pts[0]
+    for q in pts[1:]:
+        run += ((q[0]-last[0])**2 + (q[1]-last[1])**2) ** .5; last = q
+        if run >= 9.5:
+            run = 0; cx, cy = P(*q); r = 2.6*k; d.ellipse([cx-r, cy-r, cx+r, cy+r], fill=trail)
+    cx, cy = P(12, 70); r = 5.5*k; d.ellipse([cx-r, cy-r, cx+r, cy+r], fill=ink)
+    cx, cy = P(58, 11.5); r = 13*k; d.ellipse([cx-r, cy-r, cx+r, cy+r], fill=ink)
+    d.polygon([P(45.6, 15.5), P(58, 32), P(70.4, 15.5)], fill=ink)
+    r = 5*k; d.ellipse([cx-r, cy-r, cx+r, cy+r], fill=bg)
+    f = brand_font(int(size * .62))
+    d.text((x + size + size*.12, y + size*.5), "side mission", font=f, fill=ink, anchor="lm")
+
 def al_outline():
     src = open(os.path.join(ROOT, "assets", "basemap.js")).read()
     geo = json.loads(src.split("window.GEO=", 1)[1].rstrip().rstrip(";"))
@@ -77,7 +105,7 @@ def card_image(path, title, line1, line2, color, tag):
         d.text((70, y), ln, font=font(32, False), fill="#3c4046"); y += 42
     for ln in wrap(d, line2, font(30, False), 690)[:2]:
         d.text((70, y), ln, font=font(30, False), fill="#686c73"); y += 40
-    d.text((70, H - 80), NAME, font=font(30), fill="#a3263a")
+    draw_brand(img, 66, H - 118, 64)
     img.save(path, optimize=True)
     return pt
 
@@ -112,10 +140,10 @@ def main():
     os.makedirs(os.path.join(ROOT, "e"), exist_ok=True)
     # site preview image
     pt = card_image(os.path.join(ROOT, "og.png"), "This week’s yard sales, festivals and markets",
-                    "Across Alabama, on one map", "Updated every week · Free to use", "#a3263a", "Alabama events")
+                    "Across Alabama, on one map", "Updated every week · Free to use", "#1d3557", "Alabama events")
     n = 0
     for e in EVENTS:
-        cat, color = CATS.get(e["cat"], ("Event", "#a3263a"))
+        cat, color = CATS.get(e["cat"], ("Event", "#1d3557"))
         img_path = os.path.join(ROOT, "e", e["id"] + ".png")
         p = card_image(img_path, e["title"], when(e), ", ".join(x for x in [e.get("place"), e.get("town")] if x), color, cat + " · " + e.get("town", ""))
         # mark the spot on the little state map
@@ -136,7 +164,7 @@ def main():
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{esc(url)}"><link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <style>body{{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#efede8;color:#1c1e21}}main{{max-width:560px;margin:10vh auto;padding:0 16px}}
-.c{{background:#fff;border-radius:16px;padding:24px;border:1px solid #e2dfd8}}h1{{margin:0 0 8px;font-size:26px}}p{{color:#555}}a{{display:inline-block;margin-top:8px;background:#a3263a;color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}}</style>
+.c{{background:#fff;border-radius:16px;padding:24px;border:1px solid #e2dfd8}}h1{{margin:0 0 8px;font-size:26px}}p{{color:#555}}a{{display:inline-block;margin-top:8px;background:#1d3557;color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}}</style>
 <script>location.replace("../?e={e['id']}");</script></head>
 <body><main><div class="c"><h1>{esc(e['title'])}</h1><p>{esc(when(e))}<br>{esc(e.get('addr') or e.get('place') or e.get('town',''))}</p><p>{esc(e.get('desc',''))}</p>
 <a href="../?e={e['id']}">Open on the map</a></div></main></body></html>"""

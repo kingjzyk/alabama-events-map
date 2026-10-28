@@ -12,7 +12,7 @@ function toast(msg){const t=$("toast");t.textContent=msg;t.hidden=false;clearTim
 let SITE={siteName:"Side Mission",tiles:null,sponsor:null},EVENTS=[];
 try{SITE=Object.assign(SITE,await (await fetch("site.json",{cache:"no-cache"})).json())}catch(e){}
 try{EVENTS=await (await fetch("data/events.json",{cache:"no-cache"})).json()}catch(e){$("list").innerHTML='<p class="empty">Events could not load. Refresh the page to try again.</p>';return}
-$("siteName").textContent=SITE.siteName;
+$("siteNameText").textContent=SITE.siteName;
 
 const CATS={
   festival:{name:"Festivals",one:"Festival",g:'<path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/>'},
