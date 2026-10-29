@@ -140,7 +140,7 @@ def main():
     os.makedirs(os.path.join(ROOT, "e"), exist_ok=True)
     # site preview image
     pt = card_image(os.path.join(ROOT, "og.png"), "This week’s yard sales, festivals and markets",
-                    "Across Alabama, on one map", "Updated every week · Free to use", "#1d3557", "Alabama events")
+                    "Near you, all on one map", "Updated every week · Free to use", "#1d3557", "Local events")
     n = 0
     for e in EVENTS:
         cat, color = CATS.get(e["cat"], ("Event", "#1d3557"))

@@ -50,7 +50,8 @@ const isFree=e=>/^free/i.test(e.cost||"");
 const monthTheme=THEMES.find(t=>t.months.includes(new Date().getMonth())).id;
 let themePref=store.get("al-theme")||"auto";
 let when="all",query="",onlySaved=false,me=null;
-const on=new Set(Object.keys(CATS));
+// Category filter: nothing picked = show every type; tapping a type shows only that type, more taps add more types.
+const on=new Set();
 let saved=new Set();try{saved=new Set(JSON.parse(store.get("al-saved")||"[]"))}catch(e){}
 const saveSaved=()=>store.set("al-saved",JSON.stringify([...saved]));
 
@@ -259,7 +260,7 @@ function visible(){
   const q=query.trim().toLowerCase();
   return upcoming.filter(e=>{
     if(onlySaved&&!saved.has(e.id))return false;
-    if(!on.has(e.cat))return false;
+    if(on.size&&!on.has(e.cat))return false;
     if(when==="weekend"&&!overlaps(e,wkStart,wkEnd))return false;
     if(when==="week"&&!overlaps(e,today,addDays(today,6)))return false;
     if(q&&![e.title,e.town,e.place,e.desc,e.addr].join(" ").toLowerCase().includes(q))return false;
@@ -294,7 +295,7 @@ function render(){
   $("sWeekend").textContent=upcoming.filter(e=>overlaps(e,wkStart,wkEnd)).length;
   $("sFree").textContent=upcoming.filter(isFree).length;
   let h="";
-  if(!vis.length)h=`<p class="empty">${onlySaved&&!saved.size?"You haven’t saved any events yet. Open an event and tap Save.":"No events match. Clear the search, pick “All upcoming,” or turn a category back on."}</p>`;
+  if(!vis.length)h=`<p class="empty">${onlySaved&&!saved.size?"You haven’t saved any events yet. Open an event and tap Save.":"No events match. Clear the search, pick “All upcoming,” or tap “Show all” under the event types."}</p>`;
   else if(me){
     const list=vis.slice().sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)||miles(a)-miles(b));
     h+=`<div class="grp"><span>Closest to you</span><span>${list.length}</span></div>`+list.map(card).join("");
@@ -310,6 +311,7 @@ function render(){
 function buildCats(){
   $("cats").innerHTML=Object.entries(CATS).map(([k,c])=>{const n=upcoming.filter(e=>e.cat===k).length;if(!n)return "";
     return `<button type="button" class="chip" id="cat-${k}" data-c="${k}" aria-pressed="${on.has(k)}"><i style="background:var(--c-${k})">${glyph(k)}</i>${c.name}<span class="n">${n}</span></button>`}).join("")
+   +`<button type="button" class="chip clear" id="cat-all"${on.size?"":" hidden"}>Show all</button>`
    +`<button type="button" class="chip saved" id="cat-saved" aria-pressed="${onlySaved}">${HEART}Saved<span class="n" id="nSaved">${saved.size}</span></button>`;
 }
 function buildSponsor(){
@@ -369,7 +371,10 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("themeMenu").hidd
 $("when").addEventListener("click",ev=>{const b=ev.target.closest("button");if(!b)return;when=b.dataset.w;document.querySelectorAll("#when button").forEach(x=>x.setAttribute("aria-pressed",x===b));render();fitEvents()});
 $("cats").addEventListener("click",ev=>{const b=ev.target.closest(".chip");if(!b)return;
   if(b.id==="cat-saved"){onlySaved=!onlySaved;b.setAttribute("aria-pressed",onlySaved);render();return}
-  const c=b.dataset.c;on.has(c)?on.delete(c):on.add(c);b.setAttribute("aria-pressed",on.has(c));render()});
+  if(b.id==="cat-all")on.clear();else{const c=b.dataset.c;on.has(c)?on.delete(c):on.add(c)}
+  syncCats();render()});
+function syncCats(){$("cats").classList.toggle("picking",on.size>0);$("cat-all").hidden=!on.size;
+  document.querySelectorAll("#cats .chip[data-c]").forEach(x=>x.setAttribute("aria-pressed",on.has(x.dataset.c)))}
 $("q").addEventListener("input",ev=>{query=ev.target.value;render()});
 $("list").addEventListener("click",ev=>{const b=ev.target.closest(".card");if(!b)return;const e=upcoming.find(x=>x.id===b.dataset.id);if(e)openEvent(e)});
 function boundsOf(pts){const b=new maplibregl.LngLatBounds();pts.forEach(p=>b.extend(p));return b}
@@ -434,7 +439,7 @@ const QP=new URLSearchParams(location.search);
 if(QP.get("q")){query=QP.get("q");$("q").value=query}
 if(QP.get("cat")&&CATS[QP.get("cat")]){on.clear();on.add(QP.get("cat"))}
 if(["weekend","week","all"].includes(QP.get("when"))){when=QP.get("when");document.querySelectorAll("#when button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.w===when))}
-setSheet("peek");buildLayerMenu();buildMenu();buildCats();buildSponsor();render();
+setSheet("peek");buildLayerMenu();buildMenu();buildCats();syncCats();buildSponsor();render();
 applyTheme();
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",styleMap);
 new MutationObserver(styleMap).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});

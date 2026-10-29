@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Side Mission · Things to do in Alabama this weekend</title>
-<meta name="description" content="Festivals, markets, yard sales, trunk-or-treats and church events across Alabama, on one map. Updated every week.">
+<title>Side Mission · Find things to do near you this weekend</title>
+<meta name="description" content="Festivals, markets, yard sales, trunk-or-treats and church events near you, all on one map. Updated every week.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Side Mission · Things to do in Alabama this weekend">
-<meta property="og:description" content="Festivals, markets, yard sales and church events across Alabama, on one map. Updated every week.">
+<meta property="og:title" content="Side Mission · Find things to do near you this weekend">
+<meta property="og:description" content="Festivals, markets, yard sales and church events near you, all on one map. Updated every week.">
 <meta property="og:image" content="https://sidemissionmap.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1d3557">
@@ -84,17 +84,22 @@ h2{font-size:clamp(28px,3.4vw,40px);line-height:1.1}
 .stats div b{display:block;font:800 34px/1 var(--display);color:var(--navy);letter-spacing:-.02em}
 .stats div span{font-size:14px;color:var(--muted);font-weight:600}
 
-.mapcard{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:22px;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.mapcard svg.al{width:100%;height:100%}
+.mapcard{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px}
+.mapcard svg.al{width:100%;height:auto;max-height:560px}
+.maphead{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
 .mapcard .state{fill:#ecece6;stroke:#c9c2b4;stroke-width:1.2;stroke-linejoin:round}
 .mapcard .trail{fill:none;stroke:var(--coral);stroke-width:3;stroke-linecap:round;stroke-dasharray:1 9;opacity:.7}
 .pin{transform-box:fill-box;transform-origin:50% 100%;animation:drop .5s cubic-bezier(.2,1.4,.4,1) both}
 .pin.now circle.halo{animation:pulse 2.2s ease-out infinite}
 @keyframes drop{from{transform:translateY(-14px) scale(.4);opacity:0}to{transform:none;opacity:1}}
 @keyframes pulse{0%{r:6;opacity:.5}100%{r:18;opacity:0}}
-.mapcard .tag{position:absolute;left:18px;bottom:16px;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;font-weight:600;display:flex;gap:8px;align-items:center}
-.mapcard .tag i{width:10px;height:10px;border-radius:50%;background:var(--coral)}
-.mapcard a.open{position:absolute;right:16px;top:16px;min-height:40px;font-size:14px;padding:0 14px}
+.mapcard .tag{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;font-weight:600;display:flex;gap:8px;line-height:1.35}
+.mapcard .tag i{width:10px;height:10px;border-radius:50%;background:var(--coral);flex:none;margin-top:5px}
+.mapcard .tag{align-items:flex-start}
+.mapcard .tag b{color:var(--navy)}
+.mapcard .tag span span{font-weight:500;color:var(--muted)}
+.mapcard a.open{flex:none;min-height:40px;font-size:14px;padding:0 14px}
+@media (max-width:520px){.mapcard a.open{display:none}}
 @media (prefers-reduced-motion:reduce){.pin,.pin.now circle.halo{animation:none}}
 
 /* categories */
@@ -137,6 +142,8 @@ h2{font-size:clamp(28px,3.4vw,40px);line-height:1.1}
 .band p{color:#c6d1e2;margin:10px 0 0}
 .band form{display:flex;gap:10px;flex-wrap:wrap}
 .band label.em{flex:1 1 240px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#c6d1e2}
+.band select{height:50px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:#24406a;color:#fff;font:500 17px var(--body);padding:0 10px;outline:none}
+.band label.st{flex:0 1 170px}
 .band input[type=email]{height:50px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font:500 17px var(--body);padding:0 14px;outline:none}
 .band input[type=email]:focus{border-color:#fff}
 .band input[type=email]::placeholder{color:#9eb0c8}
@@ -192,7 +199,7 @@ footer nav a{text-decoration:none}
       <div>
         <span class="pill"><i></i><span id="seasonLine">Updated every week</span></span>
         <h1>Find something to do <em>this weekend.</em></h1>
-        <p class="lede">Festivals, markets, yard sales, trunk-or-treats and church events across Alabama, all on one map. Free to use, checked every week.</p>
+        <p class="lede">Festivals, markets, yard sales, trunk-or-treats and church events near you, all on one map. Free to use, checked every week.</p>
         <form class="find" action="map.html" method="get" role="search">
           <label><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
             <span class="hp">Town or event</span><input name="q" type="search" placeholder="Search a town or event" autocomplete="off"></label>
@@ -209,9 +216,9 @@ footer nav a{text-decoration:none}
         </div>
       </div>
       <div class="mapcard">
-        <svg class="al" id="alMap" role="img" aria-label="Map of Alabama with a pin for each upcoming event"></svg>
-        <a class="btn open" href="map.html">Open the map</a>
-        <div class="tag"><i></i><span id="mapTag">Pins show upcoming events</span></div>
+        <div class="maphead"><div class="tag"><i></i><span><b>Now live: Alabama</b><br><span id="mapTag">Pins show upcoming events</span> · more states coming soon</span></div>
+          <a class="btn open" href="map.html">Open the map</a></div>
+        <svg class="al" id="alMap" role="img" aria-label="Map of Alabama, the first state on Side Mission, with a pin for each upcoming event"></svg>
       </div>
     </div>
   </section>
@@ -251,9 +258,10 @@ footer nav a{text-decoration:none}
         <div><h2>Get the weekend list</h2><p>One email before the weekend with the best events near you. No spam, unsubscribe anytime.</p></div>
         <form id="signup">
           <label class="em">Your email<input type="email" name="email" required placeholder="you@example.com" autocomplete="email"></label>
+          <label class="em st">Your state<select name="state" id="stateSel" required></select></label>
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" aria-hidden="true">
           <button class="btn" type="submit" id="signBtn">Sign me up</button>
-          <p class="note" id="signNote">We’ll only use your email to send the weekend list.</p>
+          <p class="note" id="signNote">Not in Alabama? Pick your state and we’ll email you when Side Mission arrives. We only use your email for that and the weekend list.</p>
         </form>
       </div>
     </div>
@@ -261,7 +269,7 @@ footer nav a{text-decoration:none}
 
   <section class="sec" id="business" style="padding-top:24px">
     <div class="wrap">
-      <div class="sec-head reveal"><div><span class="eyebrow">For organizers and businesses</span><h2>Get your event in front of Alabama</h2></div></div>
+      <div class="sec-head reveal"><div><span class="eyebrow">For organizers and businesses</span><h2>Get your event in front of locals</h2></div></div>
       <div class="biz reveal">
         <div class="box"><h3>List an event, free</h3><p>Yard sales, festivals, markets, church and school events. We check every listing, usually within a day.</p><ul><li>Shows on the map and in the weekly list</li><li>Its own share page for Facebook and texts</li></ul><a class="btn primary" href="submit.html">Submit an event</a></div>
         <div class="box"><h3>Get featured or sponsor</h3><p>Put your event at the top with a Featured badge, or sponsor the map for a season and reach local families every week.</p><ul><li>Featured pin and badge</li><li>Sponsor spot on the map panel</li></ul><a class="btn" href="submit.html?type=featured">Ask about featuring</a></div>
@@ -274,7 +282,7 @@ footer nav a{text-decoration:none}
   <div class="wrap">
     <div>
       <a class="logo" href="./" aria-label="Side Mission home"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M12 70 C 44 72 50 54 32 48 C 14 42 20 31 58 32" fill="none" stroke="#e76f51" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 8.5"/><circle cx="12" cy="70" r="5.5" fill="#1d3557"/><path d="M58 32c0 0-13-12.5-13-20.5a13 13 0 0 1 26 0c0 8-13 20.5-13 20.5z" fill="#1d3557"/><circle cx="58" cy="11.5" r="5" fill="#f3f1ec"/></svg>side mission</a>
-      <p>Community events across Alabama, updated every week. Questions or corrections: <a href="mailto:sidemissionmap@gmail.com">sidemissionmap@gmail.com</a></p>
+      <p>Local events on one map, updated every week. Now live in Alabama, with more states on the way. Questions or corrections: <a href="mailto:sidemissionmap@gmail.com">sidemissionmap@gmail.com</a></p>
     </div>
     <nav aria-label="Footer">
       <a href="map.html">Map</a><a href="map.html?when=weekend">This weekend</a><a href="submit.html">Submit an event</a><a href="submit.html?type=correction">Fix a listing</a><a href="submit.html?type=featured">Advertise</a>
@@ -307,8 +315,8 @@ const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const mon=d=>d.toLocaleDateString("en-US",{month:"short"});
 
 // seasonal line
-const SEASON=[["winter","Winter in Alabama"],["winter","Winter in Alabama"],["spring","Spring festival season"],["spring","Spring festival season"],["spring","Spring festival season"],
-  ["summer","Summer in Alabama"],["summer","Summer in Alabama"],["summer","Summer in Alabama"],["harvest","Fall festival season"],["halloween","Spooky season is here"],["harvest","Holiday market season"],["christmas","Christmas in Alabama"]][today.getMonth()];
+const SEASON=[["winter","Winter events near you"],["winter","Winter events near you"],["spring","Spring festival season"],["spring","Spring festival season"],["spring","Spring festival season"],
+  ["summer","Summer festival season"],["summer","Summer festival season"],["summer","Summer festival season"],["harvest","Fall festival season"],["halloween","Spooky season is here"],["harvest","Holiday market season"],["christmas","Christmas markets and parades"]][today.getMonth()];
 document.documentElement.setAttribute("data-season",SEASON[0]);$("seasonLine").textContent=SEASON[1];
 $("wkLabel").textContent=`${mon(wkStart)} ${wkStart.getDate()}${+wkEnd!==+wkStart?"–"+(wkEnd.getMonth()!==wkStart.getMonth()?mon(wkEnd)+" ":"")+wkEnd.getDate():""}`;
 
@@ -326,7 +334,7 @@ function pins(list){
     const x=X(e.lng),y=Y(e.lat),c=`var(--c-${e.cat})`,isNow=now.includes(e);
     return `<g class="pin${isNow?" now":""}" style="animation-delay:${(300+i*35)}ms"><title>${esc(e.title)} · ${esc(e.town)}</title>${isNow?`<circle class="halo" cx="${x}" cy="${y-9}" r="6" fill="${c}"/>`:""}<path d="M${x} ${y}c0 0-7-6.8-7-11.2a7 7 0 0 1 14 0c0 4.4-7 11.2-7 11.2z" fill="${c}" stroke="#fff" stroke-width="1.6"/><circle cx="${x}" cy="${y-11}" r="2.4" fill="#fff"/></g>`}).join("");
   svg.insertAdjacentHTML("beforeend",g);
-  $("mapTag").textContent=`${list.length} upcoming events · ${now.length} this weekend`;
+  $("mapTag").textContent=`${list.length} events, ${now.length} this weekend`;
 }
 
 function card(e){
@@ -367,12 +375,15 @@ $("signup").addEventListener("submit",async ev=>{
   if(!key){$("signNote").textContent="Sign-up isn’t available right now. Please try again later.";return}
   btn.disabled=true;btn.textContent="Signing up…";
   const fd=new FormData();fd.append("access_key",key);fd.append("subject","Side Mission: weekend list sign-up");fd.append("from_name","Side Mission");
-  fd.append("request_type","Weekend list sign-up");fd.append("email",f.email.value);
+  fd.append("request_type","Weekend list sign-up");fd.append("email",f.email.value);fd.append("state",f.state.value);
   try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",body:fd,headers:{Accept:"application/json"}});const j=await r.json().catch(()=>({}));
-    if(!r.ok||j.success===false)throw 0;f.innerHTML='<p class="ok">Thanks! You’re on the list for the weekend email.</p>'}
+    if(!r.ok||j.success===false)throw 0;f.innerHTML=f.state&&f.state.value!=="Alabama"?'<p class="ok">Thanks! We’ll email you when Side Mission comes to your state.</p>':'<p class="ok">Thanks! You’re on the list for the weekend email.</p>'}
   catch(x){btn.disabled=false;btn.textContent="Sign me up";$("signNote").textContent="That didn’t go through. Please try again in a minute."}
 });
 
+// state list for the sign-up (Alabama is live; others join the waitlist)
+const STATES="Alabama,Alaska,Arizona,Arkansas,California,Colorado,Connecticut,Delaware,Florida,Georgia,Hawaii,Idaho,Illinois,Indiana,Iowa,Kansas,Kentucky,Louisiana,Maine,Maryland,Massachusetts,Michigan,Minnesota,Mississippi,Missouri,Montana,Nebraska,Nevada,New Hampshire,New Jersey,New Mexico,New York,North Carolina,North Dakota,Ohio,Oklahoma,Oregon,Pennsylvania,Rhode Island,South Carolina,South Dakota,Tennessee,Texas,Utah,Vermont,Virginia,Washington,West Virginia,Wisconsin,Wyoming,Washington D.C.".split(",");
+$("stateSel").innerHTML='<option value="Alabama">Alabama (live)</option>'+STATES.slice(1).map(s=>`<option>${s}</option>`).join("");
 // small touches
 const top=$("top");addEventListener("scroll",()=>top.classList.toggle("scrolled",scrollY>8),{passive:true});
 const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"}):null;
