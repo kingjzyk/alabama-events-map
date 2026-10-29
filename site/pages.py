@@ -273,3 +273,62 @@ def static_pages(root, base):
                                                              canonical=f"{base}/about" if base else "about.html", up="", body=about))
     open(os.path.join(root, "privacy.html"), "w").write(chrome(title="Privacy policy · Side Mission", desc="What Side Mission collects and how it is used.",
                                                                canonical=f"{base}/privacy" if base else "privacy.html", up="", body=privacy))
+    lost_page(root, base)
+
+
+def lost_page(root, base):
+    """404.html: shown for any address that doesn't exist. Uses root-relative links because it can appear at any depth."""
+    body = r"""<style>
+.lost{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:40px;align-items:center;padding:20px 0 10px}
+.lost h1{font-size:clamp(40px,6vw,66px);line-height:1;margin:10px 0 16px}
+.lost .lede{margin:0 0 24px}
+.lost form{display:flex;gap:8px;max-width:480px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px;margin:0 0 16px}
+.lost input{flex:1;min-width:0;border:0;background:transparent;font:500 17px var(--body);color:var(--ink);padding:0 10px;height:44px;outline:none}
+.trail{width:100%;max-width:420px;justify-self:center}
+.trail path.walk{stroke-dasharray:2 14;animation:walk 2.4s linear infinite}
+.trail .pin{animation:bob 2.4s ease-in-out infinite;transform-origin:50% 100%;transform-box:fill-box}
+@keyframes walk{to{stroke-dashoffset:-32}}
+@keyframes bob{50%{transform:translateY(-6px) rotate(-6deg)}}
+@media (prefers-reduced-motion:reduce){.trail path.walk,.trail .pin{animation:none}}
+@media (max-width:760px){.lost{grid-template-columns:minmax(0,1fr)}.trail{max-width:260px;order:-1}}
+</style>
+<div class="wrap">
+  <div class="lost">
+    <div>
+      <span class="eyebrow" id="lostTag">Page not found</span>
+      <h1>You look lost, wanderer.</h1>
+      <p class="lede" id="lostLine">This trail doesn’t lead anywhere. Plenty of others do, though.</p>
+      <form action="/map.html" method="get" role="search"><label for="lq" class="eyebrow" style="position:absolute;left:-9999px">Town or event</label>
+        <input id="lq" name="q" type="search" placeholder="Search a town or event" autocomplete="off"><button class="btn primary" type="submit">Find something</button></form>
+      <div class="btns"><a class="btn" href="/map.html?when=weekend">What’s on this weekend</a><a class="btn" href="/">Back to the start</a></div>
+    </div>
+    <svg class="trail" viewBox="0 -12 300 272" role="img" aria-label="A dotted trail that loops around and wanders off, with a map pin holding a question mark">
+      <path class="walk" d="M20 230 C 90 240 120 200 90 170 C 55 135 150 120 170 150 C 190 180 250 160 230 120 C 215 90 160 100 175 70" fill="none" stroke="#e76f51" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="20" cy="230" r="10" fill="#1d3557"/>
+      <g class="pin"><path d="M190 64c0 0-26-25-26-41a26 26 0 0 1 52 0c0 16-26 41-26 41z" fill="#1d3557"/>
+        <text x="190" y="33" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="800" font-size="30" fill="#fbf6ee">?</text></g>
+    </svg>
+  </div>
+  <h2 id="upH">Side missions you could take instead</h2>
+  <div class="list" id="up"><p class="empty">Loading…</p></div>
+</div>
+<script>
+(function(){
+  var lostEvent=/^\/e\//.test(location.pathname);
+  if(lostEvent){document.getElementById("lostTag").textContent="Event not found";
+    document.getElementById("lostLine").textContent="That one has already wrapped up, or its page moved. Here’s what’s coming up next.";}
+  var esc=function(s){return String(s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+  var P=function(x){x=x.split("-");return new Date(+x[0],x[1]-1,+x[2])};var t=new Date();t.setHours(0,0,0,0);
+  var C={festival:"Festival",market:"Market & vendors",kids:"Kids & trunk-or-treat",yard:"Yard / estate sale",church:"Church event",community:"Community"};
+  fetch("/data/events.json").then(function(r){return r.json()}).then(function(ev){
+    var up=ev.filter(function(e){return e.cat!=="yard"&&P(e.end||e.start)>=t}).sort(function(a,b){return (b.featured?1:0)-(a.featured?1:0)||P(a.start)-P(b.start)});
+    var pick=[],seen={};up.forEach(function(e){if(pick.length<4&&!seen[e.town]){pick.push(e);seen[e.town]=1}});
+    document.getElementById("up").innerHTML=pick.map(function(e){var d=P(e.start);return '<a class="card" href="/e/'+encodeURIComponent(e.id)+'.html"><div class="date"><small>'+
+      d.toLocaleDateString("en-US",{month:"short"})+'</small><b>'+d.getDate()+'</b></div><div><div class="t">'+esc(e.title)+'</div><div class="m"><i style="background:var(--c-'+e.cat+')"></i>'+
+      esc(e.town)+' · '+esc(C[e.cat]||"Event")+'</div></div></a>'}).join("")||'<p class="empty"><a href="/map.html">Open the map</a> to see everything coming up.</p>';
+  }).catch(function(){document.getElementById("up").innerHTML='<p class="empty"><a href="/map.html">Open the map</a> to see everything coming up.</p>'});
+})();
+</script>"""
+    open(os.path.join(root, "404.html"), "w").write(
+        chrome(title="You look lost, wanderer · Side Mission", desc="This page doesn't exist. Find something to do instead.",
+               canonical=f"{base}/" if base else "/", up="/", body=body, noindex=True))
