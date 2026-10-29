@@ -9,6 +9,7 @@ Needs Python 3 and Pillow (pip install pillow). Set "siteUrl" in site.json once 
 your web address so Facebook previews use full links.
 """
 import json, html, os, re, sys, datetime
+import pages
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -109,6 +110,53 @@ def card_image(path, title, line1, line2, color, tag):
     img.save(path, optimize=True)
     return pt
 
+DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+ORD = {1: "1st", 2: "2nd", 3: "3rd", 4: "4th", 5: "5th", -1: "last"}
+
+def repeat_text(r):
+    if r["freq"] == "weekly":
+        return "Every " + " and ".join(DAY_NAMES[DAYS.index(d)] for d in r["days"])
+    return f"Every {ORD[r['nth']]} {DAY_NAMES[DAYS.index(r['day'])]} of the month"
+
+def repeat_hits(r, d):
+    if r["freq"] == "weekly":
+        return DAYS[d.weekday()] in r["days"]
+    if DAYS[d.weekday()] != r["day"]:
+        return False
+    if r["nth"] == -1:
+        return (d + datetime.timedelta(days=7)).month != d.month
+    return (d.day - 1) // 7 + 1 == r["nth"]
+
+def expand_recurring(today, horizon=35):
+    """Turn data/recurring.json (repeating events, e.g. a farmers market every Saturday) into dated events for the next
+    few weeks. Upcoming dates are regenerated every build, so changing the template changes them all."""
+    global EVENTS
+    path = os.path.join(ROOT, "data", "recurring.json")
+    if not os.path.exists(path):
+        return
+    series = json.load(open(path))
+    EVENTS = [e for e in EVENTS if not (e.get("series") and e["start"] >= today.isoformat())]
+    have = {e["id"] for e in EVENTS}
+    added = 0
+    for t in series:
+        r = t["repeat"]
+        first = max(today, datetime.date.fromisoformat(t["from"])) if t.get("from") else today
+        last = min(today + datetime.timedelta(days=horizon), datetime.date.fromisoformat(t["until"])) if t.get("until") else today + datetime.timedelta(days=horizon)
+        d = first
+        while d <= last:
+            if repeat_hits(r, d) and d.isoformat() not in t.get("skip", []):
+                e = {k: v for k, v in t.items() if k not in ("repeat", "skip", "from", "until", "series")}
+                e["id"] = t["series"] + "-" + d.strftime("%m-%d")
+                e["start"] = d.isoformat(); e.pop("end", None)
+                e["series"] = t["series"]
+                e["flags"] = [repeat_text(r)] + list(t.get("flags", []))
+                if e["id"] not in have:
+                    EVENTS.append(e); have.add(e["id"]); added += 1
+            d += datetime.timedelta(days=1)
+    json.dump(EVENTS, open(os.path.join(ROOT, "data", "events.json"), "w"), indent=1)
+    print(f"Repeating events: {len(series)} series, {added} dates on the map.")
+
 def prune(today):
     """Take ended events off the site. Yard sales (home addresses) are deleted outright;
     other public events go to ../archive/past-events.json, which is kept OUTSIDE the site folder."""
@@ -136,6 +184,7 @@ def prune(today):
 def main():
     args = sys.argv[1:]
     today = datetime.date.fromisoformat(args[args.index("--today") + 1]) if "--today" in args else datetime.date.today()
+    expand_recurring(today)
     prune(today)
     os.makedirs(os.path.join(ROOT, "e"), exist_ok=True)
     # site preview image
@@ -149,25 +198,7 @@ def main():
         # mark the spot on the little state map
         im = Image.open(img_path); d = ImageDraw.Draw(im); x, y = p(e["lat"], e["lng"])
         d.ellipse([x - 13, y - 13, x + 13, y + 13], fill=color, outline="#ffffff", width=4); im.save(img_path, optimize=True)
-        url = f"{BASE}/e/{e['id']}.html" if BASE else f"{e['id']}.html"
-        img = f"{BASE}/e/{e['id']}.png" if BASE else f"{e['id']}.png"
-        desc = f"{when(e)}. {', '.join(x for x in [e.get('place'), e.get('town')] if x)}. {e.get('desc','')}"
-        esc = lambda s: html.escape(str(s or ""), quote=True)
-        page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(e['title'])} · {esc(NAME)}</title>
-<meta name="description" content="{esc(desc)}">
-<meta property="og:type" content="article"><meta property="og:site_name" content="{esc(NAME)}">
-<meta property="og:title" content="{esc(e['title'])} · {esc(e.get('town',''))}">
-<meta property="og:description" content="{esc(desc)}">
-<meta property="og:url" content="{esc(url)}"><meta property="og:image" content="{esc(img)}">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="{esc(url)}"><link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<style>body{{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#efede8;color:#1c1e21}}main{{max-width:560px;margin:10vh auto;padding:0 16px}}
-.c{{background:#fff;border-radius:16px;padding:24px;border:1px solid #e2dfd8}}h1{{margin:0 0 8px;font-size:26px}}p{{color:#555}}a{{display:inline-block;margin-top:8px;background:#1d3557;color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}}</style>
-<script>location.replace("../map.html?e={e['id']}");</script></head>
-<body><main><div class="c"><h1>{esc(e['title'])}</h1><p>{esc(when(e))}<br>{esc(e.get('addr') or e.get('place') or e.get('town',''))}</p><p>{esc(e.get('desc',''))}</p>
-<a href="../map.html?e={e['id']}">Open on the map</a></div></main></body></html>"""
+        page = pages.event_page(e, BASE, EVENTS)
         open(os.path.join(ROOT, "e", e["id"] + ".html"), "w").write(page); n += 1
     # remove share pages for events no longer in the data
     ids = {e["id"] for e in EVENTS}
@@ -180,8 +211,11 @@ def main():
         s = open(idx).read()
         s = re.sub(r'<meta property="og:image" content="[^"]*">', f'<meta property="og:image" content="{(BASE + "/og.png") if BASE else "og.png"}">', s)
         open(idx, "w").write(s)
+    town_urls = pages.town_pages(ROOT, BASE, EVENTS)
+    pages.static_pages(ROOT, BASE)
     if BASE:
-        urls = [BASE + "/", BASE + "/map", BASE + "/submit.html"] + [f"{BASE}/e/{e['id']}.html" for e in EVENTS]
+        urls = ([BASE + "/", BASE + "/map", BASE + "/about", BASE + "/privacy", BASE + "/submit"] + town_urls
+                + [f"{BASE}/e/{e['id']}" for e in EVENTS if e["cat"] != "yard"])  # home-sale pages stay out of search engines
         open(os.path.join(ROOT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
             "".join(f"  <url><loc>{html.escape(u)}</loc></url>\n" for u in urls) + "</urlset>\n")
     print(f"Built {n} event pages" + ("" if BASE else " (set siteUrl in site.json for full Facebook preview links)"))

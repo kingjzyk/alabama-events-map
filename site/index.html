@@ -105,6 +105,11 @@ h2{font-size:clamp(28px,3.4vw,40px);line-height:1.1}
 /* categories */
 .cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
 .cat{display:flex;flex-direction:column;gap:14px;padding:20px 18px;border-radius:18px;background:var(--panel);border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .15s,box-shadow .15s,border-color .15s;min-height:150px}
+.townrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.townrow #townLinks{display:contents}
+.townrow a{font-weight:600;font-size:15px;text-decoration:none}
+.townrow #townLinks a{padding:7px 12px;border-radius:999px;background:var(--panel);border:1px solid var(--line);color:var(--ink)}
+.townrow #townLinks a span{color:var(--muted);font-weight:500;margin-left:4px}
 .cat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#d6d0c5;color:var(--ink)}
 .cat i{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center}
 .cat i svg{width:24px;height:24px;fill:#fff}
@@ -227,6 +232,7 @@ footer nav a{text-decoration:none}
     <div class="wrap">
       <div class="sec-head reveal"><div><span class="eyebrow">Browse</span><h2>What are you in the mood for?</h2></div></div>
       <div class="cats reveal" id="cats"></div>
+      <div class="townrow reveal"><span class="eyebrow">Popular towns</span><div id="townLinks"></div><a href="towns.html">All towns →</a></div>
     </div>
   </section>
 
@@ -285,7 +291,7 @@ footer nav a{text-decoration:none}
       <p>Local events on one map, updated every week. Now live in Alabama, with more states on the way. Questions or corrections: <a href="mailto:sidemissionmap@gmail.com">sidemissionmap@gmail.com</a></p>
     </div>
     <nav aria-label="Footer">
-      <a href="map.html">Map</a><a href="map.html?when=weekend">This weekend</a><a href="submit.html">Submit an event</a><a href="submit.html?type=correction">Fix a listing</a><a href="submit.html?type=featured">Advertise</a>
+      <a href="map.html">Map</a><a href="map.html?when=weekend">This weekend</a><a href="towns.html">Towns</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="submit.html">Submit an event</a><a href="submit.html?type=correction">Fix a listing</a><a href="submit.html?type=featured">Advertise</a>
     </nav>
   </div>
 </footer>
@@ -351,6 +357,11 @@ fetch("data/events.json",{cache:"no-cache"}).then(r=>r.json()).then(EV=>{
   pins(up);
   $("cats").innerHTML=Object.entries(CATS).map(([k,c])=>{const n=up.filter(e=>e.cat===k).length;
     return `<a class="cat" href="map.html?cat=${k}"><i style="background:var(--c-${k})"><svg viewBox="0 0 24 24" aria-hidden="true">${c.g}</svg></i><b>${c.name}</b><span>${n} upcoming</span></a>`}).join("");
+  // popular towns → town pages
+  const slug=t=>t.toLowerCase().replace(/['’]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  const st=e=>((e.addr||"").match(/,\s*([A-Z]{2})\s*\d{5}?\s*$/)||[,"AL"])[1].toLowerCase();
+  const tc={};up.forEach(e=>{const k=slug(e.town)+"-"+st(e);(tc[k]=tc[k]||{n:0,t:e.town}).n++});
+  $("townLinks").innerHTML=Object.entries(tc).sort((a,b)=>b[1].n-a[1].n).slice(0,10).map(([k,v])=>`<a href="town/${k}.html">${esc(v.t)}<span>${v.n}</span></a>`).join("");
   // this weekend: featured first, then a mix of categories, soonest first
   // events that start this weekend come before ones already running; yard and estate sales last
   const rank=e=>(e.featured?0:2)+(D(e.start)<wkStart?2:0)+(e.cat==="yard"?1:0);

@@ -9,6 +9,9 @@ The site is **Side Mission** at https://sidemissionmap.com, hosted on Cloudflare
 - `site/site.json`: site name, web address, CARTO map key, sponsor.
 - `site/index.html`: landing page (reads `data/events.json` for its numbers, weekend picks and mini map). `site/map.html`: the map page.
 - `site/assets/app.js`: map code (MapLibre). Don't change it during a scan.
+- `site/pages.py` (used by build.py): builds a readable page per event in `site/e/` (with Google event data; yard/estate sale pages are kept out of search engines), a page per town in `site/town/`, `towns.html`, `about.html` and `privacy.html`. Edit About/Privacy wording in `pages.py`, not the HTML files.
+- `site/data/recurring.json`: repeating events (a market every Saturday, an art walk every 3rd Friday). build.py turns each into dated events for the next 5 weeks. Same fields as an event, minus `id`/`start`/`end`, plus:
+  `"series":"pepper-place-market"` (unique), `"repeat":{"freq":"weekly","days":["sat"]}` or `{"freq":"monthly","day":"fri","nth":3}` (`nth` -1 = last), and optional `"from"`, `"until"` (dates) and `"skip":["2026-11-28"]`. Only add a series when the organizer's site states the schedule; never add the dated copies to events.json by hand.
 
 ## Event format
 ```json
@@ -30,6 +33,7 @@ The site is **Side Mission** at https://sidemissionmap.com, hosted on Cloudflare
 3a. Before searching for new events, re-check every event with `"timeTBD": true`: look for its start time on the organizer's site or a current news listing. When you find it, set `time` and remove `timeTBD`. Report which times were filled in.
 4. Use the event's own page or the organizer's site as the source whenever possible. Never guess or fill in a detail. If two sources disagree, use the organizer's and add a flag noting the difference.
 5. Skip duplicates (same event, same date, even if worded differently) and anything already ended.
+5a. Events that repeat on a posted schedule (weekly markets, monthly trade days or art walks) go in `site/data/recurring.json` as one series, not as separate dated events. Check existing series before adding.
 6. Privacy: never include a person's name, phone number, email or photo. For sales at a private home, list the street address only when the seller posted it publicly.
 7. Write descriptions in plain words: what it is and what people will find there. No hype.
 8. Run `cd site && python3 build.py`, check it prints no errors, then commit with a message like `Scan Oct 28: +6 events, -4 ended` and push. Cloudflare publishes it within a minute or two. Both scans publish; publishing has no credit limit (500 publishes a month on the free plan), so out-of-scan changes can publish right away too.
