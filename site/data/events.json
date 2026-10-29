@@ -74,13 +74,16 @@
   "place": "St. Clair County Airport",
   "addr": "240 Airport Rd, Pell City, AL 35128",
   "start": "2026-10-31",
-  "time": "Time not posted yet",
-  "desc": "Career day focused on aviation jobs.",
+  "time": "7:30am\u20132:30pm",
+  "desc": "Free aviation career day at the airport with career talks, exhibitors from flight schools and military aviation, warbird flyovers, helicopter rides, aircraft on display and a free pancake breakfast and hot dog lunch.",
   "lat": 33.558884,
   "lng": -86.248174,
   "id": "aviation-career-day-10-31",
   "featured": false,
-  "timeTBD": true
+  "cost": "Free",
+  "flags": [
+   "Use the north gate off Golf Course Rd; the Mays Bend Rd entrance is closed"
+  ]
  },
  {
   "title": "Homestead Hollow Christmas in the Country",
@@ -1112,5 +1115,180 @@
   "lat": 33.538957,
   "lng": -86.570665,
   "featured": false
+ },
+ {
+  "id": "galaxy-of-lights-11-13",
+  "title": "Galaxy of Lights",
+  "cat": "festival",
+  "town": "Huntsville",
+  "place": "Huntsville Botanical Garden",
+  "addr": "4747 Bob Wallace Ave SW, Huntsville, AL 35805",
+  "start": "2026-11-13",
+  "end": "2026-12-31",
+  "time": "Walking nights most evenings, last entry 8:45pm \u00b7 driving nights Dec 6\u201315 & 28\u201331, 5:30\u20139pm",
+  "cost": "Varies by night \u00b7 driving nights $40 per car",
+  "desc": "The Botanical Garden's holiday light trail, walked on most nights and driven on select December nights, with dog-friendly and sensory-friendly nights.",
+  "lat": 34.707496,
+  "lng": -86.634037,
+  "featured": false,
+  "flags": [
+   "Closed Thanksgiving and Christmas Day",
+   "Check the Garden's calendar for walking vs. driving nights"
+  ]
+ },
+ {
+  "id": "cullman-christkindlmarkt-11-19",
+  "title": "Cullman Christkindlmarkt",
+  "cat": "market",
+  "town": "Cullman",
+  "place": "Depot Park",
+  "addr": "107 Arnold St NW, Cullman, AL 35055",
+  "start": "2026-11-19",
+  "end": "2026-12-23",
+  "time": "Thu\u2013Sat 11am\u20139pm \u00b7 Sun noon\u20138pm (open daily from Dec 10)",
+  "cost": "Free",
+  "desc": "German-style Christmas market with vendor huts, German food and drinks, live music, ice skating and rides in Depot Park.",
+  "lat": 34.180569,
+  "lng": -86.844118,
+  "featured": false
+ },
+ {
+  "id": "cullman-christmas-parade-and-tree-lighting-11-20",
+  "title": "Cullman Christmas Parade & Tree Lighting",
+  "cat": "festival",
+  "town": "Cullman",
+  "place": "Downtown Cullman and Depot Park",
+  "addr": "107 Arnold St NW, Cullman, AL 35055",
+  "start": "2026-11-20",
+  "time": "Parade 6:30pm \u00b7 tree lighting 8pm",
+  "cost": "Free",
+  "desc": "Downtown Christmas parade followed by the tree lighting at the Christkindlmarkt, with a light show, fireworks and a drone show.",
+  "lat": 34.180569,
+  "lng": -86.844118,
+  "featured": false
+ },
+ {
+  "id": "montgomery-veterans-day-celebration-11-14",
+  "title": "Montgomery Veterans Day Celebration",
+  "cat": "community",
+  "town": "Montgomery",
+  "place": "Veterans Way at Chantilly Parkway",
+  "addr": "8105 Veterans Wy, Montgomery, AL 36117",
+  "start": "2026-11-14",
+  "time": "Parade 10am \u00b7 resource fair 11am\u20131pm \u00b7 ceremony 1pm",
+  "desc": "City Veterans Day parade with veterans, military units and marching bands, followed by a veterans resource fair, a kids zone and a closing ceremony.",
+  "lat": 32.357736,
+  "lng": -86.128527,
+  "featured": false,
+  "flags": [
+   "New location this year; the parade is no longer downtown"
+  ]
+ },
+ {
+  "id": "huntsville-veterans-day-parade-11-11",
+  "title": "Huntsville Veterans Day Parade",
+  "cat": "community",
+  "town": "Huntsville",
+  "place": "Downtown Huntsville, starting near the Veterans Memorial",
+  "addr": "200 Monroe St NW, Huntsville, AL 35801",
+  "start": "2026-11-11",
+  "time": "Parade 11am\u20131pm \u00b7 pre-parade concert 10am",
+  "desc": "North Alabama's Veterans Day parade through downtown Huntsville, with a concert band performing at Veterans Memorial Park beforehand.",
+  "lat": 34.734938,
+  "lng": -86.588488,
+  "featured": false,
+  "flags": [
+   "See the organizer's site for the route map"
+  ]
+ },
+ {
+  "title": "Tuscaloosa Farmers Market",
+  "cat": "market",
+  "town": "Tuscaloosa",
+  "place": "Tuscaloosa River Market",
+  "addr": "1900 Jack Warner Pkwy, Tuscaloosa, AL 35401",
+  "time": "Starts 7am",
+  "desc": "Year-round Saturday farmers market by the river with local produce, plants, baked goods, crafts and art.",
+  "lat": 33.21646,
+  "lng": -87.56284,
+  "featured": false,
+  "id": "tuscaloosa-farmers-market-10-31",
+  "start": "2026-10-31",
+  "series": "tuscaloosa-farmers-market",
+  "flags": [
+   "Every Saturday"
+  ]
+ },
+ {
+  "title": "Tuscaloosa Farmers Market",
+  "cat": "market",
+  "town": "Tuscaloosa",
+  "place": "Tuscaloosa River Market",
+  "addr": "1900 Jack Warner Pkwy, Tuscaloosa, AL 35401",
+  "time": "Starts 7am",
+  "desc": "Year-round Saturday farmers market by the river with local produce, plants, baked goods, crafts and art.",
+  "lat": 33.21646,
+  "lng": -87.56284,
+  "featured": false,
+  "id": "tuscaloosa-farmers-market-11-07",
+  "start": "2026-11-07",
+  "series": "tuscaloosa-farmers-market",
+  "flags": [
+   "Every Saturday"
+  ]
+ },
+ {
+  "title": "Tuscaloosa Farmers Market",
+  "cat": "market",
+  "town": "Tuscaloosa",
+  "place": "Tuscaloosa River Market",
+  "addr": "1900 Jack Warner Pkwy, Tuscaloosa, AL 35401",
+  "time": "Starts 7am",
+  "desc": "Year-round Saturday farmers market by the river with local produce, plants, baked goods, crafts and art.",
+  "lat": 33.21646,
+  "lng": -87.56284,
+  "featured": false,
+  "id": "tuscaloosa-farmers-market-11-14",
+  "start": "2026-11-14",
+  "series": "tuscaloosa-farmers-market",
+  "flags": [
+   "Every Saturday"
+  ]
+ },
+ {
+  "title": "Tuscaloosa Farmers Market",
+  "cat": "market",
+  "town": "Tuscaloosa",
+  "place": "Tuscaloosa River Market",
+  "addr": "1900 Jack Warner Pkwy, Tuscaloosa, AL 35401",
+  "time": "Starts 7am",
+  "desc": "Year-round Saturday farmers market by the river with local produce, plants, baked goods, crafts and art.",
+  "lat": 33.21646,
+  "lng": -87.56284,
+  "featured": false,
+  "id": "tuscaloosa-farmers-market-11-21",
+  "start": "2026-11-21",
+  "series": "tuscaloosa-farmers-market",
+  "flags": [
+   "Every Saturday"
+  ]
+ },
+ {
+  "title": "Tuscaloosa Farmers Market",
+  "cat": "market",
+  "town": "Tuscaloosa",
+  "place": "Tuscaloosa River Market",
+  "addr": "1900 Jack Warner Pkwy, Tuscaloosa, AL 35401",
+  "time": "Starts 7am",
+  "desc": "Year-round Saturday farmers market by the river with local produce, plants, baked goods, crafts and art.",
+  "lat": 33.21646,
+  "lng": -87.56284,
+  "featured": false,
+  "id": "tuscaloosa-farmers-market-11-28",
+  "start": "2026-11-28",
+  "series": "tuscaloosa-farmers-market",
+  "flags": [
+   "Every Saturday"
+  ]
  }
 ]

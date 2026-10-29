@@ -1,1 +1,21 @@
-[]
+[
+ {
+  "series": "tuscaloosa-farmers-market",
+  "title": "Tuscaloosa Farmers Market",
+  "cat": "market",
+  "town": "Tuscaloosa",
+  "place": "Tuscaloosa River Market",
+  "addr": "1900 Jack Warner Pkwy, Tuscaloosa, AL 35401",
+  "time": "Starts 7am",
+  "desc": "Year-round Saturday farmers market by the river with local produce, plants, baked goods, crafts and art.",
+  "lat": 33.21646,
+  "lng": -87.56284,
+  "featured": false,
+  "repeat": {
+   "freq": "weekly",
+   "days": [
+    "sat"
+   ]
+  }
+ }
+]
