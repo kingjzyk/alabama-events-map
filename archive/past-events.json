@@ -1213,5 +1213,35 @@
   "flags": [
    "Every Saturday"
   ]
+ },
+ {
+  "id": "vbc-tree-lighting-11-06",
+  "title": "VBC Tree Lighting & Santa Meet-and-Greet",
+  "cat": "kids",
+  "town": "Huntsville",
+  "place": "Von Braun Center",
+  "start": "2026-11-06",
+  "time": "4\u20136pm \u00b7 tree lighting 5pm",
+  "cost": "Free",
+  "desc": "The Von Braun Center's first tree lighting, with photos with Santa and Mrs. Claus, hot cocoa and cookies.",
+  "addr": "700 Monroe St SW, Huntsville, AL 35801",
+  "lat": 34.726992,
+  "lng": -86.590895,
+  "featured": false
+ },
+ {
+  "id": "first-fridays-at-midcity-11-06",
+  "title": "First Fridays at MidCity",
+  "cat": "community",
+  "town": "Huntsville",
+  "place": "MidCity District",
+  "start": "2026-11-06",
+  "time": "5\u20139pm",
+  "cost": "Free",
+  "desc": "Evening of live performances, lawn games, food trucks and late shopping at MidCity.",
+  "addr": "5909 University Dr, Huntsville, AL 35806",
+  "lat": 34.74001,
+  "lng": -86.664453,
+  "featured": false
  }
 ]
