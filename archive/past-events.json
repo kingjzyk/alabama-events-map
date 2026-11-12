@@ -1815,5 +1815,65 @@
   "flags": [
    "Every Saturday"
   ]
+ },
+ {
+  "id": "national-veterans-day-parade-11-11",
+  "title": "National Veterans Day Parade",
+  "cat": "festival",
+  "town": "Birmingham",
+  "place": "Downtown Birmingham",
+  "addr": "1930 Reverend Abraham Woods Jr Blvd, Birmingham, AL 35203",
+  "start": "2026-11-11",
+  "time": "1pm, rain or shine",
+  "desc": "Birmingham's annual National Veterans Day Parade through the streets of downtown.",
+  "lat": 33.521856,
+  "lng": -86.811283,
+  "featured": false
+ },
+ {
+  "id": "veterans-day-pancake-breakfast-and-cruise-in-11-11",
+  "title": "Veterans Day Pancake Breakfast & Cruise-In",
+  "cat": "community",
+  "town": "Leeds",
+  "place": "Rails & Ales",
+  "addr": "1210 6th St, Leeds, AL 35094",
+  "start": "2026-11-11",
+  "time": "10am",
+  "desc": "Leeds' 4th annual City of Valor Veterans Day pancake breakfast with a car cruise-in.",
+  "lat": 33.545466,
+  "lng": -86.544573,
+  "featured": false
+ },
+ {
+  "id": "huntsville-veterans-day-parade-11-11",
+  "title": "Huntsville Veterans Day Parade",
+  "cat": "community",
+  "town": "Huntsville",
+  "place": "Downtown Huntsville \u00b7 pre-parade concert at Veterans Memorial Park",
+  "addr": "200 Monroe St NW, Huntsville, AL 35801",
+  "start": "2026-11-11",
+  "time": "Parade 11am\u20131pm \u00b7 pre-parade concert 10am",
+  "desc": "North Alabama's Veterans Day parade through downtown Huntsville, with a concert band performing at Veterans Memorial Park beforehand.",
+  "lat": 34.734938,
+  "lng": -86.588488,
+  "featured": false,
+  "flags": [
+   "See the organizer's site for the route map"
+  ]
+ },
+ {
+  "id": "collard-green-festival-11-11",
+  "title": "Collard Green Festival",
+  "cat": "festival",
+  "town": "Prichard",
+  "place": "2501 W Main St",
+  "addr": "2501 W Main St, Prichard, AL 36610",
+  "start": "2026-11-11",
+  "time": "9am",
+  "cost": "Free",
+  "desc": "Veterans Day festival with a collard greens cook-off, live entertainment, local vendors and a kids' corner.",
+  "lat": 30.744544,
+  "lng": -88.099462,
+  "featured": false
  }
 ]

@@ -50,34 +50,6 @@
   "featured": false
  },
  {
-  "id": "national-veterans-day-parade-11-11",
-  "title": "National Veterans Day Parade",
-  "cat": "festival",
-  "town": "Birmingham",
-  "place": "Downtown Birmingham",
-  "addr": "1930 Reverend Abraham Woods Jr Blvd, Birmingham, AL 35203",
-  "start": "2026-11-11",
-  "time": "1pm, rain or shine",
-  "desc": "Birmingham's annual National Veterans Day Parade through the streets of downtown.",
-  "lat": 33.521856,
-  "lng": -86.811283,
-  "featured": false
- },
- {
-  "id": "veterans-day-pancake-breakfast-and-cruise-in-11-11",
-  "title": "Veterans Day Pancake Breakfast & Cruise-In",
-  "cat": "community",
-  "town": "Leeds",
-  "place": "Rails & Ales",
-  "addr": "1210 6th St, Leeds, AL 35094",
-  "start": "2026-11-11",
-  "time": "10am",
-  "desc": "Leeds' 4th annual City of Valor Veterans Day pancake breakfast with a car cruise-in.",
-  "lat": 33.545466,
-  "lng": -86.544573,
-  "featured": false
- },
- {
   "id": "a-southern-christmas-bazaar-11-14",
   "title": "A Southern Christmas Bazaar",
   "cat": "market",
@@ -263,23 +235,6 @@
   "featured": false,
   "flags": [
    "New location this year; the parade is no longer downtown"
-  ]
- },
- {
-  "id": "huntsville-veterans-day-parade-11-11",
-  "title": "Huntsville Veterans Day Parade",
-  "cat": "community",
-  "town": "Huntsville",
-  "place": "Downtown Huntsville \u00b7 pre-parade concert at Veterans Memorial Park",
-  "addr": "200 Monroe St NW, Huntsville, AL 35801",
-  "start": "2026-11-11",
-  "time": "Parade 11am\u20131pm \u00b7 pre-parade concert 10am",
-  "desc": "North Alabama's Veterans Day parade through downtown Huntsville, with a concert band performing at Veterans Memorial Park beforehand.",
-  "lat": 34.734938,
-  "lng": -86.588488,
-  "featured": false,
-  "flags": [
-   "See the organizer's site for the route map"
   ]
  },
  {
@@ -494,21 +449,6 @@
   "desc": "Free Thanksgiving Day meal open to everyone in the community.",
   "lat": 34.7379,
   "lng": -87.656709,
-  "featured": false
- },
- {
-  "id": "collard-green-festival-11-11",
-  "title": "Collard Green Festival",
-  "cat": "festival",
-  "town": "Prichard",
-  "place": "2501 W Main St",
-  "addr": "2501 W Main St, Prichard, AL 36610",
-  "start": "2026-11-11",
-  "time": "9am",
-  "cost": "Free",
-  "desc": "Veterans Day festival with a collard greens cook-off, live entertainment, local vendors and a kids' corner.",
-  "lat": 30.744544,
-  "lng": -88.099462,
   "featured": false
  },
  {
@@ -850,6 +790,102 @@
   "desc": "Lighted Christmas parade, then entertainment, Santa photos, train rides, food and decorated trees in the park.",
   "lat": 34.621595,
   "lng": -85.758194,
+  "featured": false
+ },
+ {
+  "id": "merry-midtown-market-11-13",
+  "title": "Merry Midtown Market",
+  "cat": "church",
+  "town": "Mobile",
+  "place": "St. Pius X Church",
+  "addr": "217 S Sage Ave, Mobile, AL 36606",
+  "start": "2026-11-13",
+  "end": "2026-11-15",
+  "time": "Sat 9am\u20133pm market; Sun 11:30am\u20132pm Breakfast with Santa",
+  "desc": "Church holiday market with indoor and outdoor vendors, kids' activities and a fire truck on Saturday, and Breakfast with Santa on Sunday.",
+  "lat": 30.678246,
+  "lng": -88.114445,
+  "featured": false,
+  "flags": [
+   "Fri 5:30\u20138:30pm adults-only kickoff, $30",
+   "Breakfast with Santa $10 per person"
+  ]
+ },
+ {
+  "id": "mobile-lighting-of-the-tree-11-20",
+  "title": "Mobile Lighting of the Tree",
+  "cat": "community",
+  "town": "Mobile",
+  "place": "Mardi Gras Park",
+  "addr": "109 Government St, Mobile, AL 36602",
+  "start": "2026-11-20",
+  "time": "5:30\u20138pm (tree lit 6:20pm, drone show 7pm)",
+  "cost": "Free",
+  "desc": "The city's Christmas tree lighting downtown, followed by a drone show.",
+  "lat": 30.689761,
+  "lng": -88.040672,
+  "featured": false
+ },
+ {
+  "id": "small-business-saturday-holiday-market-11-28",
+  "title": "Small Business Saturday Holiday Market",
+  "cat": "market",
+  "town": "Mobile",
+  "place": "Mardi Gras Park",
+  "addr": "109 Government St, Mobile, AL 36602",
+  "start": "2026-11-28",
+  "time": "12\u20134pm",
+  "cost": "Free",
+  "desc": "Local vendors with gifts, seasonal treats and handmade goods, plus food trucks, games and face painting. Rain or shine.",
+  "lat": 30.689761,
+  "lng": -88.040672,
+  "featured": false
+ },
+ {
+  "id": "trussville-community-caroling-and-tree-lighting-11-29",
+  "title": "Trussville Community Caroling and Tree Lighting",
+  "cat": "community",
+  "town": "Trussville",
+  "place": "West Mall, downtown Trussville",
+  "addr": "400 Parkway Dr, Trussville, AL 35173",
+  "start": "2026-11-29",
+  "time": "4\u20136pm (tree lit 5:45pm)",
+  "cost": "Free",
+  "desc": "Christmas carols, hot chocolate, cookies and a visit from Santa, ending with the tree lighting downtown.",
+  "lat": 33.629184,
+  "lng": -86.606361,
+  "featured": false
+ },
+ {
+  "id": "hoover-christmas-tree-lighting-12-01",
+  "title": "Hoover Christmas Tree Lighting",
+  "cat": "community",
+  "town": "Hoover",
+  "place": "Hoover City Hall parking lot",
+  "addr": "100 Municipal Dr, Hoover, AL 35216",
+  "start": "2026-12-01",
+  "time": "6\u20138pm",
+  "desc": "Lighting of a 45-foot tree with school choirs, cider and hot chocolate, crafts, photos with Santa and a snow machine.",
+  "lat": 33.387096,
+  "lng": -86.805756,
+  "featured": false,
+  "flags": [
+   "Toys for Tots collection: bring a new, unwrapped toy"
+  ]
+ },
+ {
+  "id": "mobile-museum-of-art-holiday-market-open-house-12-05",
+  "title": "Mobile Museum of Art Holiday Market & Open House",
+  "cat": "market",
+  "town": "Mobile",
+  "place": "Mobile Museum of Art",
+  "addr": "4850 Museum Dr, Mobile, AL 36608",
+  "start": "2026-12-05",
+  "time": "1\u20135pm",
+  "cost": "Free",
+  "desc": "Artisan market with live music, food trucks, free museum admission and ornament-making for families.",
+  "lat": 30.704571,
+  "lng": -88.154664,
   "featured": false
  },
  {
