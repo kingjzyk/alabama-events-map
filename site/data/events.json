@@ -680,10 +680,11 @@
   "addr": "5508 Stadium Trace Pkwy, Hoover, AL 35244",
   "start": "2026-11-19",
   "time": "10am",
-  "desc": "The Junior League of Birmingham's Christmas shopping show, with merchants selling gifts and holiday goods.",
+  "desc": "The Junior League of Birmingham's three-day Christmas shopping show at the Finley Center.",
   "lat": 33.336948,
   "lng": -86.847908,
-  "featured": false
+  "featured": false,
+  "end": "2026-11-21"
  },
  {
   "id": "christmas-on-the-coosa-11-19",
@@ -694,7 +695,7 @@
   "addr": "90 Walnut St, Gadsden, AL 35901",
   "start": "2026-11-19",
   "time": "4:30pm",
-  "desc": "Downtown Christmas celebration by the Coosa River.",
+  "desc": "One of Gadsden's yearly Christmas traditions, held downtown by the Coosa River.",
   "lat": 34.007979,
   "lng": -86.001399,
   "featured": false
@@ -708,7 +709,7 @@
   "addr": "1544 Sportsman Lake Rd NW, Cullman, AL 35055",
   "start": "2026-11-19",
   "time": "5pm",
-  "desc": "Holiday fun run and walk at Sportsman Lake Park.",
+  "desc": "The 3rd annual fun run and walk fundraiser through the Winter Wonderland Christmas light show at Sportsman Lake Park.",
   "lat": 34.192634,
   "lng": -86.860908,
   "featured": false
@@ -721,12 +722,16 @@
   "place": "Ave Maria Grotto",
   "addr": "1600 St Bernard Dr SE, Cullman, AL 35055",
   "start": "2026-11-19",
-  "time": "5\u20139pm",
+  "time": "5\u20139pm on open nights",
   "cost": "Adults $12, seniors $10, kids 5\u201312 $9, 4 and under free",
-  "desc": "The 8th annual Christmas lights evening among the Grotto's miniature buildings.",
+  "desc": "The 8th annual Christmas at the Grotto, with the miniature buildings lit up for the season.",
   "lat": 34.175364,
   "lng": -86.816398,
-  "featured": false
+  "featured": false,
+  "end": "2026-12-27",
+  "flags": [
+   "Open Nov 19\u201322, Nov 27\u201329, Dec 3\u20136, Dec 10\u201323 and Dec 26\u201327"
+  ]
  },
  {
   "id": "ccc-christmas-rummage-sale-11-20",
@@ -737,7 +742,7 @@
   "addr": "119 1st Ave NE, Decatur, AL 35601",
   "start": "2026-11-20",
   "time": "7am",
-  "desc": "Christmas rummage sale.",
+  "desc": "Christmas rummage sale for holiday shopping.",
   "lat": 34.604706,
   "lng": -86.986868,
   "featured": false
@@ -765,7 +770,7 @@
   "addr": "200 Terrace Dr, Pelham, AL 35124",
   "start": "2026-11-21",
   "time": "8am",
-  "desc": "5K race at Oak Mountain State Park.",
+  "desc": "The 5th year of the Death by 5k trail race at Oak Mountain State Park.",
   "lat": 33.336107,
   "lng": -86.731236,
   "featured": false
@@ -794,7 +799,7 @@
   "addr": "3176 Maysville Rd NE, Huntsville, AL 35811",
   "start": "2026-11-21",
   "time": "10am",
-  "desc": "Christmas market at the Flower Child flower stand.",
+  "desc": "Holiday shopping with local vendors at the Flower Child flower stand.",
   "lat": 34.7725,
   "lng": -86.430178,
   "featured": false
@@ -808,7 +813,7 @@
   "addr": "4290 Colburn Mountain Rd, Tuscumbia, AL 35674",
   "start": "2026-11-21",
   "time": "10am\u20135pm",
-  "desc": "Christmas event and shopping at a farm.",
+  "desc": "A full day of Christmas fun at the farm, following its Shop the Farm boutique market.",
   "lat": 34.60008,
   "lng": -87.62986,
   "featured": false
@@ -822,7 +827,7 @@
   "addr": "101 S Main St, Enterprise, AL 36330",
   "start": "2026-11-21",
   "time": "10am\u20136pm",
-  "desc": "Holiday shopping preview in downtown Enterprise.",
+  "desc": "Downtown Enterprise kicks off its Who-liday season with a day of holiday shopping.",
   "lat": 31.314493,
   "lng": -85.853684,
   "featured": false
@@ -836,7 +841,7 @@
   "addr": "1757 Government St, Mobile, AL 36604",
   "start": "2026-11-22",
   "time": "11am\u20133pm",
-  "desc": "Holiday market at The Pillars on Government Street.",
+  "desc": "Sunday market at The Pillars with local farmers, makers, bakers and crafters.",
   "lat": 30.677461,
   "lng": -88.081115,
   "featured": false
@@ -850,7 +855,7 @@
   "addr": "3706 Moody Pkwy, Moody, AL 35004",
   "start": "2026-11-22",
   "time": "12\u20134pm",
-  "desc": "Ice cream and a visit with Santa at the farm.",
+  "desc": "The 3rd annual Ice Cream Sunday with Santa at Howard Family Holiday Farm.",
   "lat": 33.607436,
   "lng": -86.470878,
   "featured": false,
@@ -866,22 +871,24 @@
   "place": "Founder's Park",
   "addr": "905 Canal St NE, Decatur, AL 35601",
   "start": "2026-11-26",
-  "time": "5pm",
-  "desc": "A trail of decorated Christmas trees in Founder's Park.",
+  "time": "Opens 5pm",
+  "desc": "A free walk-through trail of decorated Christmas trees in Founder's Park, open from Thanksgiving Day to New Year's Day.",
   "lat": 34.613556,
   "lng": -86.98315,
-  "featured": false
+  "featured": false,
+  "end": "2027-01-01",
+  "cost": "Free"
  },
  {
   "id": "holiday-light-spectacular-11-26",
   "title": "Holiday Light Spectacular",
   "cat": "community",
   "town": "Dothan",
-  "place": "5622 US-231",
+  "place": "National Peanut Festival Fairgrounds",
   "addr": "5622 US-231, Dothan, AL 36301",
   "start": "2026-11-26",
   "time": "5:30\u20138:30pm",
-  "desc": "Holiday light display.",
+  "desc": "Over a mile of drive-through Christmas lights at the National Peanut Festival Fairgrounds.",
   "lat": 31.143091,
   "lng": -85.407245,
   "featured": false
@@ -895,7 +902,7 @@
   "addr": "101 S Main St, Enterprise, AL 36330",
   "start": "2026-11-27",
   "time": "6am\u20136pm",
-  "desc": "Black Friday shopping in downtown Enterprise, pajamas encouraged.",
+  "desc": "The annual Black Friday shopping day in downtown Enterprise. Wear your pajamas.",
   "lat": 31.314493,
   "lng": -85.853684,
   "featured": false
@@ -909,7 +916,7 @@
   "addr": "501 S Main St, Enterprise, AL 36330",
   "start": "2026-12-01",
   "time": "4\u20138pm",
-  "desc": "Christmas tree lighting with a holiday market.",
+  "desc": "The City of Enterprise's annual Christmas tree lighting, with a holiday market.",
   "lat": 31.346462,
   "lng": -85.867814,
   "featured": false
@@ -924,7 +931,7 @@
   "start": "2026-12-01",
   "time": "5\u20139pm",
   "cost": "Free",
-  "desc": "The 4th annual evening Christmas market in the parking lot at Brock's Gap.",
+  "desc": "The 4th annual evening Christmas market at Brock's Gap, with local gifts, live music and food.",
   "lat": 33.336952,
   "lng": -86.852693,
   "featured": false
@@ -939,7 +946,7 @@
   "start": "2026-12-03",
   "time": "5pm",
   "cost": "$35, youth 12 and under $25; $45 day-of",
-  "desc": "Christmas event inside Jordan-Hare Stadium.",
+  "desc": "A holiday experience that turns Jordan-Hare Stadium into a festive Christmas destination.",
   "lat": 32.602206,
   "lng": -85.489126,
   "featured": false
@@ -953,7 +960,7 @@
   "addr": "2320 Schillinger Rd S, Mobile, AL 36695",
   "start": "2026-12-05",
   "time": "9am\u20133pm",
-  "desc": "Winter craft fair at the church.",
+  "desc": "Craft fair on the church grounds.",
   "lat": 30.642899,
   "lng": -88.225211,
   "featured": false
@@ -968,21 +975,21 @@
   "start": "2026-12-05",
   "time": "9am\u20134pm",
   "cost": "Free",
-  "desc": "Christmas market with local makers and vendors outside University Pickers.",
+  "desc": "Christmas market with local vendors outside University Pickers.",
   "lat": 34.703215,
   "lng": -86.608612,
   "featured": false
  },
  {
   "id": "woodville-christmas-craft-market-12-05",
-  "title": "Woodville Christmas Craft Market",
+  "title": "White Peake Market Christmas Craft Market",
   "cat": "market",
   "town": "Woodville",
-  "place": "30012 AL-35",
+  "place": "White Peake Market",
   "addr": "30012 AL-35, Woodville, AL 35776",
   "start": "2026-12-05",
   "time": "9am\u20135pm",
-  "desc": "The 5th annual Christmas craft market.",
+  "desc": "The 5th annual Christmas craft market at White Peake Market.",
   "lat": 34.626332,
   "lng": -86.272678,
   "featured": false
@@ -992,11 +999,11 @@
   "title": "Christmas On Main Market",
   "cat": "market",
   "town": "Ardmore",
-  "place": "Main Street, Ardmore",
+  "place": "Main Street Mercantile",
   "addr": "26896 Main St, Ardmore, AL 35739",
   "start": "2026-12-05",
   "time": "9am\u20137pm",
-  "desc": "Christmas market and sales event on Main Street.",
+  "desc": "Small-town Christmas market and sales event at Main Street Mercantile.",
   "lat": 34.991616,
   "lng": -86.83975,
   "featured": false
@@ -1006,11 +1013,11 @@
   "title": "Christmas at the Farm in Oneonta",
   "cat": "market",
   "town": "Oneonta",
-  "place": "151 Canaan Acres Rd",
+  "place": "Canaan Acres",
   "addr": "151 Canaan Acres Rd, Oneonta, AL 35121",
   "start": "2026-12-05",
   "time": "10am",
-  "desc": "The 6th annual Christmas event at the farm.",
+  "desc": "The 6th annual Christmas at the Farm at Canaan Acres.",
   "lat": 33.872214,
   "lng": -86.455425,
   "featured": false
@@ -1025,7 +1032,7 @@
   "start": "2026-12-05",
   "time": "10am",
   "cost": "Free",
-  "desc": "Christmas shopping day at the market.",
+  "desc": "Christmas market with local vendors and holiday shopping.",
   "lat": 33.436753,
   "lng": -86.082283,
   "featured": false
@@ -1039,7 +1046,7 @@
   "addr": "461 John Henry Way, Madison, AL 35758",
   "start": "2026-12-05",
   "time": "10am\u20132pm",
-  "desc": "Christmas village on the Village Green at Clift Farm.",
+  "desc": "Christmas shopping and a visit with Santa on the Village Green.",
   "lat": 34.752199,
   "lng": -86.758968,
   "featured": false
@@ -1053,7 +1060,7 @@
   "addr": "4509 Pinson Blvd, Pinson, AL 35126",
   "start": "2026-12-05",
   "time": "10am\u20132pm",
-  "desc": "Christmas market at the Rock School.",
+  "desc": "Shopping with more than 30 local vendors, plus photos with Santa from 10:30am to 12:30pm.",
   "lat": 33.690175,
   "lng": -86.681923,
   "featured": false,
@@ -1071,7 +1078,7 @@
   "start": "2026-12-05",
   "time": "10am\u20134pm",
   "cost": "Free",
-  "desc": "Whoville-themed Christmas celebration downtown around the Boll Weevil Monument.",
+  "desc": "A day of Whoville holiday fun for the whole family in downtown Enterprise.",
   "lat": 31.314453,
   "lng": -85.854011,
   "featured": false
@@ -1099,7 +1106,7 @@
   "addr": "8301 US-31 Ste 89, Morris, AL 35116",
   "start": "2026-12-05",
   "time": "12\u20135pm",
-  "desc": "Ice cream and visits with Santa, part of a Christmas for a Cause fundraiser.",
+  "desc": "Ice cream and photos with Santa, raising money for the North Jefferson Foster Care Closet.",
   "lat": 33.746011,
   "lng": -86.812737,
   "featured": false
@@ -1113,10 +1120,13 @@
   "addr": "154 Main St, Cordova, AL 35550",
   "start": "2026-12-05",
   "time": "12\u20137pm",
-  "desc": "Christmas market and parade on Main Street.",
+  "desc": "Christmas market and parade in downtown Cordova.",
   "lat": 33.757703,
   "lng": -87.182279,
-  "featured": false
+  "featured": false,
+  "flags": [
+   "The listing gives both noon\u20136pm and noon\u20137pm"
+  ]
  },
  {
   "id": "merry-mile-at-the-market-12-05",
@@ -1127,7 +1137,7 @@
   "addr": "211 1st Ave SE, Decatur, AL 35601",
   "start": "2026-12-05",
   "time": "5\u20138pm",
-  "desc": "Evening Christmas event at the farmers market.",
+  "desc": "Family Christmas celebration with local food at the farmers market.",
   "lat": 34.600982,
   "lng": -86.986838,
   "featured": false
@@ -1141,7 +1151,7 @@
   "addr": "100 N College St, Auburn, AL 36830",
   "start": "2026-12-06",
   "time": "12pm",
-  "desc": "Downtown Auburn Christmas parade with a holiday market.",
+  "desc": "Auburn's Christmas parade and holiday market in downtown Auburn.",
   "lat": 32.606708,
   "lng": -85.481434,
   "featured": false
@@ -1155,7 +1165,7 @@
   "addr": "4193 US-11, Springville, AL 35146",
   "start": "2026-12-06",
   "time": "6pm",
-  "desc": "The 10th annual live nativity presentation.",
+  "desc": "Spring Valley's 10th annual outdoor live nativity presentation for the whole family.",
   "lat": 33.749238,
   "lng": -86.494218,
   "featured": false
@@ -1184,23 +1194,9 @@
   "start": "2026-12-08",
   "time": "6pm",
   "cost": "Free",
-  "desc": "Free holiday swing concert.",
+  "desc": "Free holiday concert by the Kings of Swing Orchestra inside the Hardin Center.",
   "lat": 34.014017,
   "lng": -86.004752,
-  "featured": false
- },
- {
-  "id": "christmas-campout-at-noccalula-falls-12-10",
-  "title": "Christmas Campout at Noccalula Falls",
-  "cat": "community",
-  "town": "Gadsden",
-  "place": "Noccalula Falls Park",
-  "addr": "1500 Noccalula Rd, Gadsden, AL 35904",
-  "start": "2026-12-10",
-  "time": "7am",
-  "desc": "Christmas camping event at Noccalula Falls Park.",
-  "lat": 34.040501,
-  "lng": -86.020601,
   "featured": false
  },
  {
@@ -1212,7 +1208,7 @@
   "addr": "7001 University Blvd E, Cottondale, AL 35453",
   "start": "2026-12-12",
   "time": "9am",
-  "desc": "Christmas market at the VFW post.",
+  "desc": "Christmas market where every purchase helps veterans and their families.",
   "lat": 33.191133,
   "lng": -87.44293,
   "featured": false
@@ -1225,8 +1221,8 @@
   "place": "Rocky Ridge Venue",
   "addr": "4608 Gilley St, Guntersville, AL 35976",
   "start": "2026-12-12",
-  "time": "9am",
-  "desc": "Christmas market at the venue.",
+  "time": "9am\u20136pm",
+  "desc": "The venue's first Christmas market.",
   "lat": 34.309188,
   "lng": -86.295664,
   "featured": false
@@ -1241,7 +1237,7 @@
   "start": "2026-12-12",
   "time": "10am\u20133pm",
   "cost": "Free",
-  "desc": "Christmas market with local vendors.",
+  "desc": "Holiday market with local vendors.",
   "lat": 34.743848,
   "lng": -86.741973,
   "featured": false
@@ -1256,7 +1252,7 @@
   "start": "2026-12-12",
   "time": "10am\u20134pm",
   "cost": "Free",
-  "desc": "The 8th annual Christmas market at the civic center.",
+  "desc": "The 8th annual Holly Jolly Market at the Moody Civic Center.",
   "lat": 33.594516,
   "lng": -86.494221,
   "featured": false
@@ -1270,9 +1266,24 @@
   "addr": "409 W Green St, Athens, AL 35611",
   "start": "2026-12-12",
   "time": "12\u20135pm",
-  "desc": "Christmas market at the farmers market.",
+  "desc": "The 2nd annual Farm City Christmas Market, hosted by the Limestone County Farmers Federation.",
   "lat": 34.801072,
   "lng": -86.974071,
+  "featured": false
+ },
+ {
+  "id": "merry-art-market-12-14",
+  "title": "Merry Art Market",
+  "cat": "market",
+  "town": "Auburn",
+  "place": "AO Art Showcase",
+  "addr": "312 N Gay St, Auburn, AL 36830",
+  "start": "2026-12-14",
+  "end": "2026-12-18",
+  "time": "7:30am",
+  "desc": "Holiday art market at the AO Art Showcase in downtown Auburn.",
+  "lat": 32.6108395,
+  "lng": -85.4791378,
   "featured": false
  },
  {
