@@ -18,22 +18,6 @@
   "featured": false
  },
  {
-  "title": "Homestead Hollow Christmas in the Country",
-  "cat": "market",
-  "town": "Springville",
-  "place": "Homestead Hollow",
-  "addr": "1161 Murphrees Valley Rd, Springville, AL",
-  "start": "2026-11-13",
-  "end": "2026-11-15",
-  "time": "9am\u20134pm daily",
-  "cost": "$10 adults \u00b7 12 & under free",
-  "desc": "Christmas arts, crafts and country festival.",
-  "lat": 33.787113,
-  "lng": -86.486931,
-  "id": "homestead-hollow-christmas-in-the-country-11-13",
-  "featured": false
- },
- {
   "title": "North Pole Expo 2026",
   "cat": "market",
   "town": "Trussville",
@@ -47,78 +31,6 @@
   "lat": 33.66026,
   "lng": -86.593584,
   "id": "north-pole-expo-2026-11-20",
-  "featured": false
- },
- {
-  "id": "national-peanut-festival-11-06",
-  "title": "National Peanut Festival",
-  "cat": "festival",
-  "town": "Dothan",
-  "place": "National Peanut Festival Fairgrounds",
-  "addr": "5622 US-231, Dothan, AL 36301",
-  "start": "2026-11-06",
-  "end": "2026-11-15",
-  "time": "Gates open 4:30pm weekdays (4pm Nov 6, 2pm Nov 11 & 13) \u00b7 Sat 10am \u00b7 Sun 1pm",
-  "cost": "$9\u2013$11 gate; ride armbands extra",
-  "desc": "Ten-day fair with midway rides, concerts, a parade, car show, demolition derby, livestock and farm exhibits.",
-  "lat": 31.145174,
-  "lng": -85.404302,
-  "flags": [
-   "Sun Nov 15 is rides-only"
-  ],
-  "featured": false
- },
- {
-  "id": "christmas-jubilee-11-13",
-  "title": "Christmas Jubilee",
-  "cat": "market",
-  "town": "Mobile",
-  "place": "Mobile Convention Center",
-  "addr": "1 S Water St, Mobile, AL 36602",
-  "start": "2026-11-13",
-  "end": "2026-11-15",
-  "time": "Fri 11am\u20137pm \u00b7 Sat 10am\u20136pm \u00b7 Sun 10am\u20135pm",
-  "cost": "$5\u2013$15, 5 & under free",
-  "desc": "Junior League of Mobile's holiday market with gift, craft and boutique vendors and Santa photos.",
-  "lat": 30.691592,
-  "lng": -88.03856,
-  "flags": [
-   "Some listings show different hours; these are from the Mobile County event page"
-  ],
-  "featured": false
- },
- {
-  "id": "holiday-market-at-the-farm-at-rocky-top-11-14",
-  "title": "Holiday Market at The Farm at Rocky Top",
-  "cat": "market",
-  "town": "Salem",
-  "place": "The Farm at Rocky Top",
-  "addr": "2910 Lee Rd 145, Salem, AL 36874",
-  "start": "2026-11-14",
-  "end": "2026-11-15",
-  "time": "9am\u20134pm both days",
-  "cost": "$5, 10 & under free",
-  "desc": "Arts and crafts market with handmade goods from local artisans, gourmet foods, boutique and vintage items, and food vendors.",
-  "lat": 32.578817,
-  "lng": -85.262206,
-  "featured": false
- },
- {
-  "id": "birmingham-fall-craft-vendor-market-11-14",
-  "title": "Birmingham Fall Craft & Vendor Market",
-  "cat": "market",
-  "town": "Hoover",
-  "place": "Riverchase Galleria",
-  "addr": "2000 Galleria Cir, Hoover, AL 35244",
-  "start": "2026-11-14",
-  "end": "2026-11-15",
-  "time": "Sat 11am\u20138pm \u00b7 Sun noon\u20136pm",
-  "desc": "Indoor fall market with local vendors selling handmade goods, seasonal d\u00e9cor, candles, apparel, gifts and sweets.",
-  "lat": 33.37995,
-  "lng": -86.809756,
-  "flags": [
-   "The ticket page also lists 11am\u20136pm; confirm Saturday's closing time"
-  ],
   "featured": false
  },
  {
@@ -343,21 +255,6 @@
   "featured": false
  },
  {
-  "id": "women-s-harvest-encounter-11-15",
-  "title": "Women's Harvest Encounter",
-  "cat": "church",
-  "town": "Rainbow City",
-  "place": "City Church",
-  "addr": "409 W Grand Ave, Rainbow City, AL 35906",
-  "start": "2026-11-15",
-  "time": "6pm",
-  "cost": "Free",
-  "desc": "A women's worship service open to everyone.",
-  "lat": 33.96388,
-  "lng": -86.044689,
-  "featured": false
- },
- {
   "id": "dash-through-the-lights-11-19",
   "title": "Dash Through the Lights",
   "cat": "community",
@@ -574,25 +471,6 @@
   "lat": 34.621595,
   "lng": -85.758194,
   "featured": false
- },
- {
-  "id": "merry-midtown-market-11-13",
-  "title": "Merry Midtown Market",
-  "cat": "church",
-  "town": "Mobile",
-  "place": "St. Pius X Church",
-  "addr": "217 S Sage Ave, Mobile, AL 36606",
-  "start": "2026-11-13",
-  "end": "2026-11-15",
-  "time": "Sat 9am\u20133pm market; Sun 11:30am\u20132pm Breakfast with Santa",
-  "desc": "Church holiday market with indoor and outdoor vendors, kids' activities and a fire truck on Saturday, and Breakfast with Santa on Sunday.",
-  "lat": 30.678246,
-  "lng": -88.114445,
-  "featured": false,
-  "flags": [
-   "Fri 5:30\u20138:30pm adults-only kickoff, $30",
-   "Breakfast with Santa $10 per person"
-  ]
  },
  {
   "id": "mobile-lighting-of-the-tree-11-20",
@@ -1285,6 +1163,24 @@
   "lat": 32.6108395,
   "lng": -85.4791378,
   "featured": false
+ },
+ {
+  "id": "prattville-christmas-market-12-03",
+  "title": "Prattville Christmas Market",
+  "cat": "market",
+  "town": "Prattville",
+  "place": "Spillway Park Pavilion",
+  "addr": "S Court St, Prattville, AL 36067",
+  "start": "2026-12-03",
+  "end": "2026-12-23",
+  "time": "5\u20139pm on market nights",
+  "desc": "Evening Christmas market with handmade craft vendors, holiday bakers, food trucks and photos with Santa at the new Spillway Park pavilion.",
+  "lat": 32.461497,
+  "lng": -86.475915,
+  "featured": false,
+  "flags": [
+   "Open Dec 3\u20136, 8, 10\u201312, 17\u201319 and 21\u201323"
+  ]
  },
  {
   "title": "Tuscaloosa Farmers Market",
