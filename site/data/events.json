@@ -386,14 +386,17 @@
   "cat": "community",
   "town": "Foley",
   "place": "Downtown OWA",
-  "addr": "100 N Owa Blvd, Foley, AL 36535",
+  "addr": "101 N OWA Blvd, Foley, AL 36535",
   "start": "2026-11-21",
-  "time": "Time not posted yet",
-  "timeTBD": true,
-  "desc": "Annual Christmas tree lighting at Downtown OWA.",
+  "time": "Starts 2pm",
+  "desc": "Christmas tree lighting at Downtown OWA with Santa, carolers, train rides and a Toys for Tots collection.",
   "lat": 30.375087,
   "lng": -87.65879,
-  "featured": false
+  "featured": false,
+  "cost": "Free",
+  "flags": [
+   "News listings disagree on the end time (4:30pm vs 8pm)"
+  ]
  },
  {
   "id": "arab-christmas-in-the-park-lighting-11-27",
@@ -1181,6 +1184,153 @@
   "flags": [
    "Open Dec 3\u20136, 8, 10\u201312, 17\u201319 and 21\u201323"
   ]
+ },
+ {
+  "id": "christmas-extravaganza-gift-show-11-21",
+  "title": "Christmas Extravaganza Gift Show",
+  "cat": "market",
+  "town": "Daphne",
+  "place": "Daphne Civic Center",
+  "addr": "2603 US-98, Daphne, AL 36526",
+  "start": "2026-11-21",
+  "time": "10am\u20133pm",
+  "cost": "$5, VIP $20, 12 and under free",
+  "desc": "Holiday vendor show with gifts and Christmas shopping.",
+  "lat": 30.617087,
+  "lng": -87.905816,
+  "featured": false
+ },
+ {
+  "id": "arctic-express-at-wales-west-11-27",
+  "title": "Arctic Express at Wales West",
+  "cat": "kids",
+  "town": "Silverhill",
+  "place": "Wales West Light Railway",
+  "addr": "13670 Smiley St, Silverhill, AL 36576",
+  "start": "2026-11-27",
+  "end": "2026-12-24",
+  "time": "4\u20139pm",
+  "cost": "$25 per person, under 2 free",
+  "desc": "Holiday light train ride with a photo with Santa.",
+  "lat": 30.503484,
+  "lng": -87.793011,
+  "featured": false,
+  "flags": [
+   "Fri\u2013Sun through Dec 13, then nightly from Dec 16"
+  ]
+ },
+ {
+  "id": "grand-holiday-stroll-11-28",
+  "title": "Grand Holiday Stroll",
+  "cat": "festival",
+  "town": "Point Clear",
+  "place": "Grand Hotel Golf Resort & Spa",
+  "addr": "17855 Scenic Hwy 98, Fairhope, AL 36532",
+  "start": "2026-11-28",
+  "end": "2026-12-12",
+  "time": "5\u20138pm",
+  "cost": "$25 at the door, $21 in advance",
+  "desc": "The 4th annual evening stroll through more than 30,000 lights on the Grand Hotel grounds.",
+  "lat": 30.484741,
+  "lng": -87.932838,
+  "featured": false,
+  "flags": [
+   "Open Nov 28, Dec 4\u20135 and Dec 11\u201312"
+  ]
+ },
+ {
+  "id": "christmas-at-bicentennial-park-11-30",
+  "title": "Christmas at Bicentennial Park",
+  "cat": "festival",
+  "town": "Stockton",
+  "place": "Bicentennial Park",
+  "addr": "51233 AL-225, Stockton, AL 36579",
+  "start": "2026-11-30",
+  "end": "2026-12-23",
+  "time": "5\u20139pm nightly",
+  "cost": "Free, donations accepted",
+  "desc": "Drive-through Christmas light display.",
+  "lat": 30.969957,
+  "lng": -87.866237,
+  "featured": false,
+  "flags": [
+   "Closed Dec 6 and Dec 13"
+  ]
+ },
+ {
+  "id": "daphne-annual-tree-lighting-12-03",
+  "title": "Daphne Annual Tree Lighting",
+  "cat": "community",
+  "town": "Daphne",
+  "place": "Daphne City Hall",
+  "addr": "1705 Main St, Daphne, AL 36526",
+  "start": "2026-12-03",
+  "time": "5\u20138pm (program 6pm)",
+  "cost": "Free",
+  "desc": "Tree lighting with food, face painting and sleigh rides with Santa.",
+  "lat": 30.602636,
+  "lng": -87.903623,
+  "featured": false
+ },
+ {
+  "id": "gateswood-winterfest-12-05",
+  "title": "Gateswood Winterfest",
+  "cat": "festival",
+  "town": "Robertsdale",
+  "place": "Gateswood Volunteer Fire Department",
+  "addr": "33014 County Rd 112, Robertsdale, AL 36567",
+  "start": "2026-12-05",
+  "time": "Vendors 10am, parade 11:30am, lunch noon",
+  "cost": "Free",
+  "desc": "Small-town winter festival with vendors, a parade and lunch at the fire department.",
+  "lat": 30.7081,
+  "lng": -87.547935,
+  "featured": false
+ },
+ {
+  "id": "baldwin-pops-holiday-concert-12-08",
+  "title": "Baldwin Pops Holiday Concert",
+  "cat": "community",
+  "town": "Gulf Shores",
+  "place": "Gulf Shores High School Performing Arts Center",
+  "addr": "21656 Coastal Gateway Blvd, Gulf Shores, AL 36542",
+  "start": "2026-12-08",
+  "time": "7pm (doors 5:30pm)",
+  "cost": "Free; bring a new unwrapped toy for Toys for Tots",
+  "desc": "Holiday concert by the Baldwin Pops.",
+  "lat": 30.325341,
+  "lng": -87.65688,
+  "featured": false
+ },
+ {
+  "id": "light-up-the-arts-12-10",
+  "title": "Light Up the Arts",
+  "cat": "community",
+  "town": "Orange Beach",
+  "place": "Coastal Arts Center of Orange Beach",
+  "addr": "26389 Canal Rd, Orange Beach, AL 36561",
+  "start": "2026-12-10",
+  "time": "5:30\u20137:30pm",
+  "cost": "Free",
+  "desc": "Evening of art demonstrations, live music and a visit from Santa.",
+  "lat": 30.293509,
+  "lng": -87.575854,
+  "featured": false
+ },
+ {
+  "id": "spirit-of-christmas-parade-all-is-bright-12-12",
+  "title": "Spirit of Christmas Parade & All Is Bright",
+  "cat": "festival",
+  "town": "Spanish Fort",
+  "place": "Eastern Shore Centre",
+  "addr": "30500 State Hwy 181, Spanish Fort, AL 36527",
+  "start": "2026-12-12",
+  "time": "Parade 6pm, tree lighting and music 6\u20138pm",
+  "cost": "Free",
+  "desc": "Christmas parade at Eastern Shore Centre, with a tree lighting and music on The Green.",
+  "lat": 30.669349,
+  "lng": -87.849159,
+  "featured": false
  },
  {
   "title": "Tuscaloosa Farmers Market",
