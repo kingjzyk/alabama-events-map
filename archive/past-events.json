@@ -2724,5 +2724,20 @@
   "flags": [
    "Every Saturday"
   ]
+ },
+ {
+  "id": "missfits-christmas-shoppe-11-19",
+  "title": "Missfit's Christmas Shoppe",
+  "cat": "market",
+  "town": "Dothan",
+  "place": "Missfit's Christmas Shoppe",
+  "addr": "300 Garland St, Dothan, AL 36301",
+  "start": "2026-11-19",
+  "end": "2026-11-25",
+  "time": "Thu\u2013Fri 4\u20138pm \u00b7 Sat 10am\u20132pm \u00b7 Mon\u2013Wed 10am\u20136pm",
+  "desc": "Holiday shop of handmade goods, with proceeds benefiting the Doug Tew Therapeutic Recreation Center.",
+  "lat": 31.206975,
+  "lng": -85.39708,
+  "featured": false
  }
 ]

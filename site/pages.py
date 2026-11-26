@@ -117,6 +117,12 @@ def json_ld(e, url, img):
     if re.match(r"(?i)^free", e.get("cost") or ""):
         data["isAccessibleForFree"] = True
         data["offers"] = {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": url}
+    else:
+        m = re.search(r"\$\s*(\d+(?:\.\d{1,2})?)", e.get("cost") or "")
+        if m:  # first posted price, usually the general/adult ticket
+            data["offers"] = {"@type": "Offer", "price": m.group(1), "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": url}
+    if e.get("org"):  # organizing group or business, only when the source names one
+        data["organizer"] = {"@type": "Organization", "name": e["org"]}
     return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>"
 
 

@@ -72,21 +72,6 @@
   "featured": false
  },
  {
-  "id": "missfits-christmas-shoppe-11-19",
-  "title": "Missfit's Christmas Shoppe",
-  "cat": "market",
-  "town": "Dothan",
-  "place": "Missfit's Christmas Shoppe",
-  "addr": "300 Garland St, Dothan, AL 36301",
-  "start": "2026-11-19",
-  "end": "2026-11-25",
-  "time": "Thu\u2013Fri 4\u20138pm \u00b7 Sat 10am\u20132pm \u00b7 Mon\u2013Wed 10am\u20136pm",
-  "desc": "Holiday shop of handmade goods, with proceeds benefiting the Doug Tew Therapeutic Recreation Center.",
-  "lat": 31.206975,
-  "lng": -85.39708,
-  "featured": false
- },
- {
   "id": "the-shared-table-thanksgiving-lunch-11-26",
   "title": "The Shared Table Thanksgiving Lunch",
   "cat": "community",
@@ -364,7 +349,8 @@
   "desc": "The City of Enterprise's annual Christmas tree lighting, with a holiday market.",
   "lat": 31.346462,
   "lng": -85.867814,
-  "featured": false
+  "featured": false,
+  "org": "City of Enterprise"
  },
  {
   "id": "market-at-brock-s-gap-christmas-market-12-01",
@@ -642,7 +628,8 @@
   "desc": "Free holiday concert by the Kings of Swing Orchestra inside the Hardin Center.",
   "lat": 34.014017,
   "lng": -86.004752,
-  "featured": false
+  "featured": false,
+  "org": "Kings of Swing Orchestra"
  },
  {
   "id": "vfw-post-6022-christmas-treasures-market-12-12",
@@ -714,7 +701,8 @@
   "desc": "The 2nd annual Farm City Christmas Market, hosted by the Limestone County Farmers Federation.",
   "lat": 34.801072,
   "lng": -86.974071,
-  "featured": false
+  "featured": false,
+  "org": "Limestone County Farmers Federation"
  },
  {
   "id": "merry-art-market-12-14",
@@ -849,7 +837,8 @@
   "desc": "Holiday concert by the Baldwin Pops.",
   "lat": 30.325341,
   "lng": -87.65688,
-  "featured": false
+  "featured": false,
+  "org": "Baldwin Pops"
  },
  {
   "id": "light-up-the-arts-12-10",
@@ -908,7 +897,8 @@
   "desc": "The Bank Street Players' community production of A Christmas Story: The Musical.",
   "lat": 34.604547,
   "lng": -86.984644,
-  "featured": false
+  "featured": false,
+  "org": "Bank Street Players"
  },
  {
   "id": "winter-wonderland-tea-party-12-04",
@@ -1257,7 +1247,8 @@
   "desc": "The City of Clay's tree lighting at Cosby Lake, with music, treats and family activities.",
   "lat": 33.686138,
   "lng": -86.624752,
-  "featured": false
+  "featured": false,
+  "org": "City of Clay"
  },
  {
   "id": "dothan-christmas-spectacular-12-01",

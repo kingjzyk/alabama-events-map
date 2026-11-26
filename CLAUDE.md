@@ -23,6 +23,7 @@ The site is **Side Mission** at https://sidemissionmap.com, hosted on Cloudflare
 ```
 - `cat` is one of: `festival`, `market`, `kids` (trunk-or-treats and kids' events), `yard` (yard, garage, estate sales), `church`, `community` (food, pets, career days, shows, everything else).
 - `id`: lowercase title words joined by hyphens, then `-MM-DD` of the start date. Must be unique.
+- `org` (optional): the organizing group or business when the source names it (e.g. "Junior League of Mobile", "City of Daphne"). Never a person's name. Google uses it for event search results.
 - `end` only when the event runs more than one day. `cost` may be omitted when the source doesn't say (the site shows "Not posted").
 - `lat`/`lng` must come from looking up the street address (places search), never from a guess. Use 6 decimal places.
 
